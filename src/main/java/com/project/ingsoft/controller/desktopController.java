@@ -12,7 +12,7 @@ public class desktopController {
 	public ModelAndView home()
 	{
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("index.html");
+		mav.setViewName("home.html");
 		return mav;
 	}
 }

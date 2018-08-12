@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 /*
  * Author: Alessio Spina
  * Class: Evento
@@ -22,6 +24,7 @@ import javax.persistence.Table;
  * 				ogni istanza di un'entità corrisponde a una singola riga e la classe stessa corrisponde alla tabella
  * 				in cui sono archiviate tali righe.
  * */
+
 
 @Entity
 @Table(name="evento")
