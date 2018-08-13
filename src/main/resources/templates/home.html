@@ -11,6 +11,9 @@
 	<!-- Awesome Icon -->	
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 	
+	<!-- Animated CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    
     <link rel="stylesheet" type="text/css" href="/home/css/navbar.css">
     <link rel="stylesheet" type="text/css" href="/home/css/carousel.css">
     <link rel="stylesheet" type="text/css" href="/home/css/main.css">
@@ -47,12 +50,41 @@
     	  	<button class="btn btn-warning"><i class="fas fa-shopping-cart"></i>  Carrello</button>
     	  </form>
     	 </div>
-    	  
-    	  <div class="nav-box">
-    	  <form action="">
-    	  	<button class="btn btn-primary"><i class="fas fa-user"></i>  Login</button>
-    	  </form>
+    	  <div class="nav-box dropdown">    	
+    	  	<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fas fa-user"></i>  Login</button>   	  	
+			<ul class="dropdown-menu" id="login-dp">
+				<div class="row">
+					<div class="col">
+								Login via
+								<div class="social-buttons">
+									<a href="#" class="btn btn-fb"><i class="fab fa-facebook"></i> Facebook</a>
+									<a href="#" class="btn btn-tw"><i class="fab fa-twitter"></i> Twitter</a>
+								</div>
+                                or
+								 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+										<div class="form-group">
+											 <label class="sr-only" for="exampleInputEmail2">Email address</label>
+											 <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+										</div>
+										<div class="form-group">
+											 <label class="sr-only" for="exampleInputPassword2">Password</label>
+											 <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                             <div class="help-block text-right"><a href="">Forget the password ?</a></div>
+										</div>
+										<div class="form-group">
+											 <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+										</div>
+										<div class="checkbox">
+											 <label>
+											 <input type="checkbox"> keep me logged-in
+											 </label>
+										</div>
+								 </form>
+							</div>
+				</div>
+			</ul>
     	  </div>
+    	  
        </div>
 	</nav> <!-- END NAVBAR -->
 	
@@ -106,13 +138,18 @@
   <!-- ======= CATEGORIE ======= -->
   <div class="jumbotron category-box">
   	<div class="row">
+  	   <div class="title-box">
+  		 <h2>Seleziona il tuo evento preferito!</h2>
+  		</div>
+  	</div>
+  	<div class="row">
   	  <div class="col-2">
   		 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-  		  <a class="nav-link active" id="v-pills-concerti-tab" data-toggle="pill" href="#v-pills-concerti" role="tab" aria-controls="v-pills-concerti" aria-selected="true">Concerti</a>
-  		  <a class="nav-link" id="v-pills-fiere-tab" data-toggle="pill" href="#v-pills-fiere" role="tab" aria-controls="v-pills-fiere" aria-selected="false">Fiere</a>
-  		  <a class="nav-link" id="v-pills-sports-tab" data-toggle="pill" href="#v-pills-sports" role="tab" aria-controls="v-pills-sports" aria-selected="false">Sport</a>
-  		  <a class="nav-link" id="v-pills-teatro-tab" data-toggle="pill" href="#v-pills-teatro" role="tab" aria-controls="v-pills-teatro" aria-selected="false">Teatro</a>
-  		  <a class="nav-link" id="v-pills-cinema-tab" data-toggle="pill" href="#v-pills-cinema" role="tab" aria-controls="v-pills-cinema" aria-selected="false">Cinema</a>
+  		  <a class="nav-link active border-box" style="margin-top: 10px" id="v-pills-concerti-tab" data-toggle="pill" href="#v-pills-concerti" role="tab" aria-controls="v-pills-concerti" aria-selected="true">Concerti</a>
+  		  <a class="nav-link border-box" id="v-pills-fiere-tab" data-toggle="pill" href="#v-pills-fiere" role="tab" aria-controls="v-pills-fiere" aria-selected="false">Fiere</a>
+  		  <a class="nav-link border-box" id="v-pills-sports-tab" data-toggle="pill" href="#v-pills-sports" role="tab" aria-controls="v-pills-sports" aria-selected="false">Sport</a>
+  		  <a class="nav-link border-box" id="v-pills-teatro-tab" data-toggle="pill" href="#v-pills-teatro" role="tab" aria-controls="v-pills-teatro" aria-selected="false">Teatro</a>
+  		  <a class="nav-link border-box" id="v-pills-cinema-tab" data-toggle="pill" href="#v-pills-cinema" role="tab" aria-controls="v-pills-cinema" aria-selected="false">Cinema</a>
 	     </div>
 		</div>
 		<div class="col-10">

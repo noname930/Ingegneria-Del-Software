@@ -37,8 +37,25 @@
 	border-color: #6c757d;
 	padding: 15px;
 	box-shadow: 7px 7px 4px grey;
+	transition: transform .2s
+}
+
+.card-box:hover {
+	transform: scale(1.05);
 }
 
 .card-title {
     text-align: center;
+}
+
+.border-box {
+	border: solid 1px;
+	margin-top: 1px;
+}
+
+.title-box {
+	margin-bottom: 40px;
+	width: 100%;
+    text-align: center;
+	
 }
