@@ -16,3 +16,29 @@
 	color:white;
 	text-align:center;
 }
+
+.card {
+	width: 200px;
+    height: 200px;
+    display: inline-block;
+    padding:3px;
+    margin: 7px;
+}
+
+.card-body {
+	padding-right:0px;
+	padding-left:0px;
+}
+
+.card-box {
+	margin:10px;
+	border: 1px solid;
+	border-radius: 15px;
+	border-color: #6c757d;
+	padding: 15px;
+	box-shadow: 7px 7px 4px grey;
+}
+
+.card-title {
+    text-align: center;
+}

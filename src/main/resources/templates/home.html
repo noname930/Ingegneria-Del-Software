@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -7,13 +7,14 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+	
+	<!-- Awesome Icon -->	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+	
     <link rel="stylesheet" type="text/css" href="/home/css/navbar.css">
     <link rel="stylesheet" type="text/css" href="/home/css/carousel.css">
     <link rel="stylesheet" type="text/css" href="/home/css/main.css">
     
- 
-
     <title>EasyTicket</title>
   </head>
   <body>
@@ -43,13 +44,13 @@
     	  
     	 <div class="nav-box">
     	  <form action="">
-    	  	<button class="btn btn-warning">Carrello</button>
+    	  	<button class="btn btn-warning"><i class="fas fa-shopping-cart"></i>  Carrello</button>
     	  </form>
     	 </div>
     	  
     	  <div class="nav-box">
     	  <form action="">
-    	  	<button class="btn btn-primary">Login</button>
+    	  	<button class="btn btn-primary"><i class="fas fa-user"></i>  Login</button>
     	  </form>
     	  </div>
        </div>
@@ -108,127 +109,74 @@
   	  <div class="col-2">
   		 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
   		  <a class="nav-link active" id="v-pills-concerti-tab" data-toggle="pill" href="#v-pills-concerti" role="tab" aria-controls="v-pills-concerti" aria-selected="true">Concerti</a>
-  		  <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Fiere</a>
-  		  <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Sport</a>
-  		  <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Teatro</a>
-  		  <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Cinema</a>
+  		  <a class="nav-link" id="v-pills-fiere-tab" data-toggle="pill" href="#v-pills-fiere" role="tab" aria-controls="v-pills-fiere" aria-selected="false">Fiere</a>
+  		  <a class="nav-link" id="v-pills-sports-tab" data-toggle="pill" href="#v-pills-sports" role="tab" aria-controls="v-pills-sports" aria-selected="false">Sport</a>
+  		  <a class="nav-link" id="v-pills-teatro-tab" data-toggle="pill" href="#v-pills-teatro" role="tab" aria-controls="v-pills-teatro" aria-selected="false">Teatro</a>
+  		  <a class="nav-link" id="v-pills-cinema-tab" data-toggle="pill" href="#v-pills-cinema" role="tab" aria-controls="v-pills-cinema" aria-selected="false">Cinema</a>
 	     </div>
 		</div>
 		<div class="col-10">
 		<div class="tab-content" id="v-pills-tabContent">
 		  <div class="tab-pane fade show active" id="v-pills-concerti" role="tabpanel" aria-labelledby="v-pills-concerti-tab">
 		   <div class=row>
-			   <div class="card-group">
+			   <div class="card-box"  th:each="Evento : ${lista_concerti}">
 				  <div class="card">
 				    <img class="card-img-top" src="http://via.placeholder.com/150x150" alt="Card image cap">
 				    <div class="card-body">
-				      <h5 class="card-title">Card title</h5>
-				      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-				    </div>
-				    <div class="card-footer">
-				      <small class="text-muted">Last updated 3 mins ago</small>
+				      <h5 class="card-title">[[${Evento.nome}]]</h5>
 				    </div>
 				  </div>
-				  <div class="card">
-				    <img class="card-img-top" src="http://via.placeholder.com/150x150" alt="Card image cap">
-				    <div class="card-body">
-				      <h5 class="card-title">Card title</h5>
-				      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-				    </div>
-				    <div class="card-footer">
-				      <small class="text-muted">Last updated 3 mins ago</small>
-				    </div>
-				  </div>
-				  <div class="card">
-				    <img class="card-img-top" src="http://via.placeholder.com/150x150" alt="Card image cap">
-				    <div class="card-body">
-				      <h5 class="card-title">Card title</h5>
-				      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-				    </div>
-				    <div class="card-footer">
-				      <small class="text-muted">Last updated 3 mins ago</small>
-				    </div>
-				 </div>
-				 <div class="card">
-				    <img class="card-img-top" src="http://via.placeholder.com/150x150" alt="Card image cap">
-				    <div class="card-body">
-				      <h5 class="card-title">Card title</h5>
-				      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-				    </div>
-				    <div class="card-footer">
-				      <small class="text-muted">Last updated 3 mins ago</small>
-				    </div>
-				 </div>
-				 <div class="card">
-				    <img class="card-img-top" src="http://via.placeholder.com/150x150" alt="Card image cap">
-				    <div class="card-body">
-				      <h5 class="card-title">Card title</h5>
-				      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-				    </div>
-				    <div class="card-footer">
-				      <small class="text-muted">Last updated 3 mins ago</small>
-				    </div>
-				 </div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="card-group">
-				  <div class="card">
-				    <img class="card-img-top" src="http://via.placeholder.com/150x150" alt="Card image cap">
-				    <div class="card-body">
-				      <h5 class="card-title">Card title</h5>
-				      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-				    </div>
-				    <div class="card-footer">
-				      <small class="text-muted">Last updated 3 mins ago</small>
-				    </div>
-				  </div>
-				  <div class="card">
-				    <img class="card-img-top" src="http://via.placeholder.com/150x150" alt="Card image cap">
-				    <div class="card-body">
-				      <h5 class="card-title">Card title</h5>
-				      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-				    </div>
-				    <div class="card-footer">
-				      <small class="text-muted">Last updated 3 mins ago</small>
-				    </div>
-				  </div>
-				  <div class="card">
-				    <img class="card-img-top" src="http://via.placeholder.com/150x150" alt="Card image cap">
-				    <div class="card-body">
-				      <h5 class="card-title">Card title</h5>
-				      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-				    </div>
-				    <div class="card-footer">
-				      <small class="text-muted">Last updated 3 mins ago</small>
-				    </div>
-				 </div>
-				 <div class="card">
-				    <img class="card-img-top" src="http://via.placeholder.com/150x150" alt="Card image cap">
-				    <div class="card-body">
-				      <h5 class="card-title">Card title</h5>
-				      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-				    </div>
-				    <div class="card-footer">
-				      <small class="text-muted">Last updated 3 mins ago</small>
-				    </div>
-				 </div>
-				 <div class="card">
-				    <img class="card-img-top" src="http://via.placeholder.com/150x150" alt="Card image cap">
-				    <div class="card-body">
-				      <h5 class="card-title">Card title</h5>
-				      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-				    </div>
-				    <div class="card-footer">
-				      <small class="text-muted">Last updated 3 mins ago</small>
-				    </div>
-				 </div>
 				</div>
 			</div>
 		  </div>
-		  <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"></div>
-		  <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
-		  <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+		  <div class="tab-pane fade" id="v-pills-fiere" role="tabpanel" aria-labelledby="v-pills-fiere-tab">
+		  	<div class=row>
+			   <div class="card-box"  th:each="Evento : ${lista_fiere}">
+				  <div class="card">
+				    <img class="card-img-top" src="http://via.placeholder.com/150x150" alt="Card image cap">
+				    <div class="card-body">
+				      <h5 class="card-title">[[${Evento.nome}]]</h5>
+				    </div>
+				  </div>
+				</div>
+			</div>
+		  </div>
+		  <div class="tab-pane fade" id="v-pills-sports" role="tabpanel" aria-labelledby="v-pills-sports-tab">
+		  	 <div class=row>
+			   <div class="card-box"  th:each="Evento : ${lista_sports}">
+				  <div class="card">
+				    <img class="card-img-top" src="http://via.placeholder.com/150x150" alt="Card image cap">
+				    <div class="card-body">
+				      <h5 class="card-title">[[${Evento.nome}]]</h5>
+				    </div>
+				  </div>
+				</div>
+			</div>
+		  </div>
+		  <div class="tab-pane fade" id="v-pills-teatro" role="tabpanel" aria-labelledby="v-pills-teatro-tab">
+		    <div class=row>
+			   <div class="card-box"  th:each="Evento : ${lista_teatri}">
+				  <div class="card">
+				    <img class="card-img-top" src="http://via.placeholder.com/150x150" alt="Card image cap">
+				    <div class="card-body">
+				      <h5 class="card-title">[[${Evento.nome}]]</h5>
+				    </div>
+				  </div>
+				</div>
+			</div>
+		  </div>
+		  <div class="tab-pane fade" id="v-pills-cinema" role="tabpanel" aria-labelledby="v-pills-cinema-tab">
+		    <div class=row>
+			   <div class="card-box"  th:each="Evento : ${lista_cinema}">
+				  <div class="card">
+				    <img class="card-img-top" src="http://via.placeholder.com/150x150" alt="Card image cap">
+				    <div class="card-body">
+				      <h5 class="card-title">[[${Evento.nome}]]</h5>
+				    </div>
+				  </div>
+				</div>
+			</div>
+		  </div>		  
 		</div>
 	  </div>
   	</div>
