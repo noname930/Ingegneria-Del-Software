@@ -49,8 +49,19 @@ public class Evento implements Serializable{
 	@Column(name="tipologia")
 	private String tipologia;
 	
+	@Column(name="img")
+	private String img;
 	
 	
+	
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
 
 	public Integer getId() {
 		return id;

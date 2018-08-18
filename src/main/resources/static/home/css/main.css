@@ -19,15 +19,14 @@
 
 .card {
 	width: 200px;
-    height: 200px;
+	height:210px;
     display: inline-block;
     padding:3px;
     margin: 7px;
 }
 
 .card-body {
-	padding-right:0px;
-	padding-left:0px;
+	padding: 0.50rem;
 }
 
 .card-box {
@@ -57,5 +56,9 @@
 	margin-bottom: 40px;
 	width: 100%;
     text-align: center;
-	
+}
+
+
+.card-img-top {
+    height: 70%;
 }
