@@ -156,12 +156,18 @@
 		<div class="tab-content" id="v-pills-tabContent">
 		  <div class="tab-pane fade show active" id="v-pills-concerti" role="tabpanel" aria-labelledby="v-pills-concerti-tab">
 		   <div class=row>
-			   <div class="card-box"  th:each="Evento : ${lista_concerti}" action="@{/evento/${Evento.id}}">
+			   <div class="card-box"  th:each="Evento : ${lista_concerti}">
 				  <div class="card">
 				    <img class="card-img-top" th:src="${Evento.img}" alt="Card image cap">
 				    <div class="card-body">
-				      <h5 class="card-title">[[${Evento.nome}]]</h5>
+				     <h5 class="card-title">[[${Evento.nome}]]</h5>
 				    </div>
+				  </div>
+			      <div class="card-footer">
+				     <div class="button-box">
+				     	<a class="btn btn-info btn-card" th:href="${'/evento/'+ Evento.id}">Info</a>
+				     	<a class="btn btn-warning btn-card">Add</a>
+				     </div>
 				  </div>
 				</div>
 			</div>
@@ -170,10 +176,16 @@
 		  	<div class=row>
 			   <div class="card-box"  th:each="Evento : ${lista_fiere}">
 				  <div class="card">
-				    <img class="card-img-top" src="http://via.placeholder.com/150x150" alt="Card image cap">
+				    <img class="card-img-top" th:src="${Evento.img}" alt="Card image cap">
 				    <div class="card-body">
 				      <h5 class="card-title">[[${Evento.nome}]]</h5>
 				    </div>
+				  </div>
+				  <div class="card-footer">
+				     <div class="button-box">
+				     	<a class="btn btn-info btn-card" th:href="${'/evento/'+ Evento.id}">Info</a>
+				     	<a class="btn btn-warning btn-card">Add</a>
+				     </div>
 				  </div>
 				</div>
 			</div>
@@ -182,10 +194,16 @@
 		  	 <div class=row>
 			   <div class="card-box"  th:each="Evento : ${lista_sports}">
 				  <div class="card">
-				    <img class="card-img-top" src="http://via.placeholder.com/150x150" alt="Card image cap">
+				    <img class="card-img-top" th:src="${Evento.img}" alt="Card image cap">
 				    <div class="card-body">
 				      <h5 class="card-title">[[${Evento.nome}]]</h5>
 				    </div>
+				  </div>
+				  <div class="card-footer">
+				     <div class="button-box">
+				     	<a class="btn btn-info btn-card" th:href="${'/evento/'+ Evento.id}">Info</a>
+				     	<a class="btn btn-warning btn-card">Add</a>
+				     </div>
 				  </div>
 				</div>
 			</div>
@@ -194,10 +212,16 @@
 		    <div class=row>
 			   <div class="card-box"  th:each="Evento : ${lista_teatri}">
 				  <div class="card">
-				    <img class="card-img-top" src="http://via.placeholder.com/150x150" alt="Card image cap">
+				    <img class="card-img-top" th:src="${Evento.img}" alt="Card image cap">
 				    <div class="card-body">
 				      <h5 class="card-title">[[${Evento.nome}]]</h5>
 				    </div>
+				  </div>
+				  <div class="card-footer">
+				     <div class="button-box">
+				     	<a class="btn btn-info btn-card" th:href="${'/evento/'+ Evento.id}">Info</a>
+				     	<a class="btn btn-warning btn-card">Add</a>
+				     </div>
 				  </div>
 				</div>
 			</div>
@@ -206,10 +230,16 @@
 		    <div class=row>
 			   <div class="card-box"  th:each="Evento : ${lista_cinema}">
 				  <div class="card">
-				    <img class="card-img-top" src="http://via.placeholder.com/150x150" alt="Card image cap">
+				    <img class="card-img-top" th:src="${Evento.img}" alt="Card image cap">
 				    <div class="card-body">
 				      <h5 class="card-title">[[${Evento.nome}]]</h5>
 				    </div>
+				  </div>
+				  <div class="card-footer">
+				     <div class="button-box">
+				     	<a class="btn btn-info btn-card" th:href="${'/evento/'+ Evento.id}">Info</a>
+				     	<a class="btn btn-warning btn-card">Add</a>
+				     </div>
 				  </div>
 				</div>
 			</div>

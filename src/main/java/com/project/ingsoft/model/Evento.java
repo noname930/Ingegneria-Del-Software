@@ -52,8 +52,40 @@ public class Evento implements Serializable{
 	@Column(name="img")
 	private String img;
 	
+	@Column(name="indirizzo")
+	private String indirizzo;
+	
+	@Column(name="descrizione")
+	private String descrizione;
+	
+	@Column(name="sotto_tipologia")
+	private String sotto_tipologia;
 	
 	
+
+	public String getSotto_tipologia() {
+		return sotto_tipologia;
+	}
+
+	public void setSotto_tipologia(String sotto_tipologia) {
+		this.sotto_tipologia = sotto_tipologia;
+	}
+
+	public String getIndirizzo() {
+		return indirizzo;
+	}
+
+	public void setIndirizzo(String indirizzo) {
+		this.indirizzo = indirizzo;
+	}
+
+	public String getDescrizione() {
+		return descrizione;
+	}
+
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
 
 	public String getImg() {
 		return img;

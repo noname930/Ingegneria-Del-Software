@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -48,9 +50,12 @@ public class desktopController {
 	}
 	
 	@RequestMapping(value="/evento/{id}", method=RequestMethod.GET)
-	public ModelAndView infoEvento () {
+	public ModelAndView infoEvento (@PathVariable Integer id) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("infoEvento.html");
+		Evento evento = eventorepository.getOne(id);
+		System.out.println("id: " + evento.getId());
+		mav.addObject("evento", evento);
 		return mav;
 	}
 	

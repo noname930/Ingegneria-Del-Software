@@ -62,3 +62,17 @@
 .card-img-top {
     height: 70%;
 }
+
+.button-box {
+	text-align: center;
+}
+
+.card-footer {
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.btn-card {
+	margin:5px;
+	width:90px;
+}

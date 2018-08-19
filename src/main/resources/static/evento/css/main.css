@@ -1,0 +1,48 @@
+@charset "ISO-8859-1";
+
+
+.title-box {
+	width:100%
+}
+
+.title-box > h {
+	text-align=center;
+}
+
+.footer {
+	background-color:#1d2124;
+	margin-bottom:0px;
+	padding:15px;
+}
+
+.footer > p {
+	color:white;
+	text-align:center;
+}
+
+.infoevento-box {
+	margin-top:20px;
+}
+
+.dati-box {
+	margin-left:10px;
+}
+
+.nav-link > h3  {
+	text-align:center;
+}
+
+.nav-link > h6 , .nav-link > p {
+	display:inline-block;
+}
+
+.payment-box {
+	width:100%;
+	text-align:right;
+	margin-top:25px;
+}
+
+.image-box > img{
+	width: 750px;
+    height: 400px;
+}
