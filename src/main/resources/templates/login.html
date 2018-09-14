@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>EasyTicket</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="/login/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/login/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/login/fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/login/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/login/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/login/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/login/vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/login/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/login/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/login/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/login/css/navbar.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<!-- Awesome Icon -->	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+</head>
+<body>
+
+	<!-- ===== NAVBAR ====== -->
+    <nav class="navbar navbar-expand-lg navbar-dark" id="#mynav">
+  		<!-- Logo Brand -->
+  		<a class="navbar-brand" href="/home">EasyTicket</a>
+  		
+  		<!-- Button per riduzione schermo -->
+  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    	<span class="navbar-toggler-icon"></span>
+  		</button>
+		
+		<!-- Corpo della navbar -->
+  		<div class="collapse navbar-collapse" id="navbarSupportedContent"> <!-- Collapse: riduce su schermi piccoli -->
+    	  <ul class="navbar-nav mr-auto ml-auto">
+    	   <li class="nav-item">
+    	   <div class="nav-box">
+			<form class="form-inline my-2 my-lg-0">
+      			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+     			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  			</form>
+  			</div>
+  			</li>
+    	  </ul>
+    	  
+    	 <div class="nav-box">
+    	  <form action="">
+    	  	<button class="btn btn-warning"><i class="fas fa-shopping-cart"></i>  Carrello</button>
+    	  </form>
+    	 </div>
+    	  <div sec:authorize="isAnonymous()" class="nav-box dropdown">    	
+    	  	<a class="btn btn-primary" href="/login"><i class="fas fa-user"></i>  Login</a>   	  				
+    	  </div>
+    	  <div sec:authorize="isAuthenticated()" class="nav-box dropdown">
+    	  	<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fas fa-user"></i>  My Account</button>
+    	  	<div class="dropdown-menu">
+   			  <a class="dropdown-item" href="/userpage"> <i class="fas fa-file-alt"></i> Profilo</a>
+   			  <div class="dropdown-divider"></div>
+    		  <a class="dropdown-item" href="/usershopping"> <i class="far fa-credit-card"></i> Acquisti</a>
+  			</div>
+    	  </div>
+       </div>
+	</nav> <!-- END NAVBAR -->
+	
+
+
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col">
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form form-signin" th:object="${user}" th:action="@{/login}" method="POST">
+					<a class="login100-form-logo" href="/">
+						<i class="zmdi zmdi-ticket-star"></i>
+					</a>
+
+					<span class="login100-form-title p-b-34 p-t-27">
+						Log in
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Enter username">
+						<input class="input100" type="text" name="username" placeholder="Username" th:field="*{username}">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<input class="input100" type="password" name="password" placeholder="Password"  th:field="*{password}">
+						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+					</div>
+
+					<div class="contact100-form-checkbox">
+						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+						<label class="label-checkbox100" for="ckb1">
+							Remember me
+						</label>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" type="submit">
+							Login
+						</button>
+					</div>
+
+					<div class="text-center p-t-90">
+						<a class="txt1" href="#">
+							Forgot Password?
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	 </div>
+	</div>
+ 	<div class="col">
+	  <div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form" action="/registration" method="POST" th:object="${user_reg}">
+					<span class="login100-form-title p-b-34">
+						Registrazione
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Nome">
+						<input class="input100" type="text" name="nome" placeholder="Nome" th:field="*{nome}">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate = "Cognome">
+						<input class="input100" type="text" name="cognome" placeholder="Cognome" th:field="*{cognome}">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate = "Data di nascita">
+						 <input class="input100" name="date" placeholder="Data di Nascita" type="date" th:field="*{data}">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate = "Paese">
+						 <input class="input100" name="paese" placeholder="Paese" type="text" th:field="*{paese}">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate = "Provincia">
+						 <input class="input100" name="provincia" placeholder="Provincia" type="text" th:field="*{provincia}">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate = "Indirizzo">
+						 <input class="input100" name="indirizzo" placeholder="Indirizzo" type="text" th:field="*{indirizzo}">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate = "Telefono">
+						 <input class="input100" name="telefono" placeholder="Telefono" type="text" th:field="*{telefono}">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate = "Indirizzo Email">
+						 <input class="input100" name="text" placeholder="Indirizzo Email" type="text" th:field="*{email}">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<input class="input100" type="password" name="password" placeholder="Password">
+						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<input class="input100" type="password" name="password" placeholder="Ripeti Password">
+						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn reg-btn" type="submit">
+							Registrati
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	 </div>
+	</div>
+   </div>
+  </div>
+
+	<div id="dropDownSelect1"></div>
+	
+	
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/login/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/login/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/login/vendor/bootstrap/js/popper.js"></script>
+	<script src="/login/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/login/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/login/vendor/daterangepicker/moment.min.js"></script>
+	<script src="/login/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="/login/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="/login/js/main.js"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+</body>
+</html>

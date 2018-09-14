@@ -1,6 +1,7 @@
 package com.project.ingsoft.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,7 +44,86 @@ public class User implements Serializable {
 	@Column(name="enabled")
 	private Integer enabled;
 	
+	@Column(name="nome")
+	private String nome;
 	
+	@Column(name="cognome")
+	private String cognome;
+	
+	@Column(name="data_di_nascita")
+	private String data;
+	
+	@Column(name="paese")
+	private String paese;
+	
+	@Column(name="provincia")
+	private String provincia;
+	
+	@Column(name="indirizzo")
+	private String indirizzo;
+	
+	@Column(name="telefono")
+	private String telefono;
+	
+	
+	
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCognome() {
+		return cognome;
+	}
+
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	public String getPaese() {
+		return paese;
+	}
+
+	public void setPaese(String paese) {
+		this.paese = paese;
+	}
+
+	public String getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
+
+	public String getIndirizzo() {
+		return indirizzo;
+	}
+
+	public void setIndirizzo(String indirizzo) {
+		this.indirizzo = indirizzo;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
 	public Integer getId() {
 		return id;
 	}

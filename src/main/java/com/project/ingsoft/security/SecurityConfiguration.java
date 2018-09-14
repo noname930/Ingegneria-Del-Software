@@ -55,8 +55,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {		
 		http
         .authorizeRequests()
-        	.antMatchers("/").permitAll(); //accesso alla permesso a tutti
-
+        	.antMatchers("/").permitAll() //accesso alla permesso a tutti
+        	.antMatchers("/userpage", "/usershopping").hasAuthority("admin")
+        	.anyRequest().authenticated()// autentico la richiesta di login
+            .and()
+         .formLogin()
+            .loginPage("/login").defaultSuccessUrl("/home") // login approvato => va in home
+            .permitAll()
+            .and()
+        .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
             
 		
 		http.authorizeRequests().antMatchers("/resources/**").permitAll().anyRequest().permitAll(); // escludo le risorse dal controllo
