@@ -29,17 +29,17 @@ public class Role  {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Integer role_id;
 	
 	@Column(name="role")
 	private String role;
 	
 	
 	public Integer getId() {
-		return id;
+		return role_id;
 	}
 	public void setId(Integer id) {
-		this.id = id;
+		this.role_id = id;
 	}
 	public String getRole() {
 		return role;

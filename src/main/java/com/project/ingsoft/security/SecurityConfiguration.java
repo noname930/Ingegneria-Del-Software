@@ -56,6 +56,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http
         .authorizeRequests()
         	.antMatchers("/").permitAll() //accesso alla permesso a tutti
+        	.antMatchers("/registration").permitAll()
         	.antMatchers("/userpage", "/usershopping").hasAuthority("admin")
         	.anyRequest().authenticated()// autentico la richiesta di login
             .and()
@@ -63,7 +64,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .loginPage("/login").defaultSuccessUrl("/home") // login approvato => va in home
             .permitAll()
             .and()
-        .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
+        .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/home");
             
 		
 		http.authorizeRequests().antMatchers("/resources/**").permitAll().anyRequest().permitAll(); // escludo le risorse dal controllo

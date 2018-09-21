@@ -25,5 +25,6 @@ public interface UserRepository extends JpaRepository<User,Integer> {
 	
 	//Metodo per cercare un User tramite il suo username.
 	public User findByUsername(String username);
+	
 
 }

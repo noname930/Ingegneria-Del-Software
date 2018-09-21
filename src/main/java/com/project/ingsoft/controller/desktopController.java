@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.hibernate.engine.jdbc.StreamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -13,20 +12,37 @@ import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.project.ingsoft.model.Evento;
 import com.project.ingsoft.model.User;
+import com.project.ingsoft.model.User_Role;
 import com.project.ingsoft.repository.EventoRepository;
+import com.project.ingsoft.repository.RoleRepository;
+import com.project.ingsoft.repository.UserRepository;
+import com.project.ingsoft.repository.UserRoleRepository;
+import com.project.ingsoft.service.UserRoleService;
 
 @Controller
 public class desktopController {
 	
 	@Autowired
 	private EventoRepository eventorepository;
+	
+	@Autowired
+	private UserRoleService urService;
+	
+	@Autowired
+	private RoleRepository roleRepository;
+	
+	@Autowired // entità che cripta le password
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	
 	//============= CONTROLLER CHE GESTICE LE RICHIESTE SULL'INDIRIZZO {sitoweb/} ==============
@@ -108,12 +124,20 @@ public class desktopController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/registration", method=RequestMethod.POST)
-	public ModelAndView registration() {
+	@RequestMapping(value="/registration", method=RequestMethod.GET)
+	public ModelAndView registration(User u,BindingResult bindingresult) {
 		ModelAndView mav = new ModelAndView();	
-		mav.setViewName("userPage.html");
-		
-		
+	    mav.setViewName("registration.html");
+	    //System.out.println("pass:["+u.getPassword()+"]"+" => " + "["+bCryptPasswordEncoder.encode(u.getPassword())+"]");
+	    
+	    
+	    u.setPassword(bCryptPasswordEncoder.encode(u.getPassword()));
+	    u.setEnabled(1);
+	    userRepository.save(u);
+	    
+	    System.out.println(u.getId()+" "+ (roleRepository.findByRole("admin").getId()));
+	    urService.insertAdminRole(u,roleRepository.findByRole("admin"), new User_Role());
+	    
 		return mav;
 	}
 	

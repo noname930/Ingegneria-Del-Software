@@ -22,7 +22,7 @@
     var input = $('.validate-input .input100');
 
   //  $('.validate-form').on('submit',function(){
-    $('.reg-btn').click(function(){
+    $('login100-form-btn').click(function(){
         var check = true;
 
         for(var i=0; i<input.length; i++) {

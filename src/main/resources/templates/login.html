@@ -130,58 +130,63 @@
 	  <div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form" action="/registration" method="POST" th:object="${user_reg}">
+				<form class="login100-form" action="/registration" method="GET" th:object="${user_reg}">
 					<span class="login100-form-title p-b-34">
 						Registrazione
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Nome">
+					<div class="wrap-input100" data-validate = "Nome">
 						<input class="input100" type="text" name="nome" placeholder="Nome" th:field="*{nome}">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 					
-					<div class="wrap-input100 validate-input" data-validate = "Cognome">
+					<div class="wrap-input100" data-validate = "Cognome">
 						<input class="input100" type="text" name="cognome" placeholder="Cognome" th:field="*{cognome}">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 					
-					<div class="wrap-input100 validate-input" data-validate = "Data di nascita">
+					<div class="wrap-input100" data-validate = "Data di nascita">
 						 <input class="input100" name="date" placeholder="Data di Nascita" type="date" th:field="*{data}">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 					
-					<div class="wrap-input100 validate-input" data-validate = "Paese">
+					<div class="wrap-input100" data-validate = "Paese">
 						 <input class="input100" name="paese" placeholder="Paese" type="text" th:field="*{paese}">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 					
-					<div class="wrap-input100 validate-input" data-validate = "Provincia">
+					<div class="wrap-input100" data-validate = "Provincia">
 						 <input class="input100" name="provincia" placeholder="Provincia" type="text" th:field="*{provincia}">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 					
-					<div class="wrap-input100 validate-input" data-validate = "Indirizzo">
+					<div class="wrap-input100" data-validate = "Indirizzo">
 						 <input class="input100" name="indirizzo" placeholder="Indirizzo" type="text" th:field="*{indirizzo}">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 					
-					<div class="wrap-input100 validate-input" data-validate = "Telefono">
+					<div class="wrap-input100" data-validate = "Telefono">
 						 <input class="input100" name="telefono" placeholder="Telefono" type="text" th:field="*{telefono}">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 					
-					<div class="wrap-input100 validate-input" data-validate = "Indirizzo Email">
+					<div class="wrap-input100" data-validate = "Indirizzo Email">
 						 <input class="input100" name="text" placeholder="Indirizzo Email" type="text" th:field="*{email}">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 					
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="password" placeholder="Password">
+					<div class="wrap-input100" data-validate = "Username">
+						<input class="input100" type="text" name="nome" placeholder="Username" th:field="*{username}">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+					
+					<div class="wrap-input100" data-validate="Enter password">
+						<input class="input100" type="password" name="password" placeholder="Password" th:field="*{password}">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 					
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="password" placeholder="Ripeti Password">
+					<div class="wrap-input100" data-validate="Enter password">
+						<input class="input100" type="password" name="password-rip" placeholder="Ripeti Password">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 
