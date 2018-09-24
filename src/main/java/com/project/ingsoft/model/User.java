@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 
+
 /*
  * Author: Alessio Spina
  * Class: User
@@ -32,36 +33,34 @@ public class User implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name="username")
-	private String username;
-	
+
 	@Column(name="password")
 	private String password;
 	
-	@Column(name="email")
-	private String email;
+
+	@Column(name="username")
+	private String username;
 	
+
 	@Column(name="enabled")
 	private Integer enabled;
 	
+
 	@Column(name="nome")
 	private String nome;
 	
+
 	@Column(name="cognome")
 	private String cognome;
 	
+
 	@Column(name="data_di_nascita")
 	private String data;
-	
+
 	@Column(name="paese")
 	private String paese;
 	
-	@Column(name="provincia")
-	private String provincia;
-	
-	@Column(name="indirizzo")
-	private String indirizzo;
-	
+
 	@Column(name="telefono")
 	private String telefono;
 	
@@ -100,22 +99,6 @@ public class User implements Serializable {
 		this.paese = paese;
 	}
 
-	public String getProvincia() {
-		return provincia;
-	}
-
-	public void setProvincia(String provincia) {
-		this.provincia = provincia;
-	}
-
-	public String getIndirizzo() {
-		return indirizzo;
-	}
-
-	public void setIndirizzo(String indirizzo) {
-		this.indirizzo = indirizzo;
-	}
-
 	public String getTelefono() {
 		return telefono;
 	}
@@ -148,13 +131,6 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 	public Integer getEnabled() {
 		return enabled;

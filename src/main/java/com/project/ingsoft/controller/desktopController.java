@@ -131,12 +131,11 @@ public class desktopController {
 	    //System.out.println("pass:["+u.getPassword()+"]"+" => " + "["+bCryptPasswordEncoder.encode(u.getPassword())+"]");
 	    
 	    
-	    u.setPassword(bCryptPasswordEncoder.encode(u.getPassword()));
-	    u.setEnabled(1);
-	    userRepository.save(u);
-	    
-	    System.out.println(u.getId()+" "+ (roleRepository.findByRole("admin").getId()));
-	    urService.insertAdminRole(u,roleRepository.findByRole("admin"), new User_Role());
+	    u.setPassword(bCryptPasswordEncoder.encode(u.getPassword())); // encrypt della pass inserita dall'user
+	    u.setEnabled(1); // abilito l'account
+	    userRepository.save(u); // salvo l'account	    
+	    //System.out.println(u.getId()+" "+ (roleRepository.findByRole("admin").getId()));
+	    urService.insertAdminRole(u,roleRepository.findByRole("admin"), new User_Role()); //affido il ruolo admin al nuovo account
 	    
 		return mav;
 	}
