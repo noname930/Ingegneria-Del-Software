@@ -1,6 +1,7 @@
 package com.project.ingsoft.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +10,7 @@ import org.hibernate.engine.jdbc.StreamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,20 +71,22 @@ public class desktopController {
 		mav.addObject("lista_sports", lista_sports);
 		mav.addObject("lista_teatri", lista_teatri);
 		mav.addObject("lista_cinema", lista_cinema);
-		
-		
+			
 		return mav;
 	}
 	
 	
 	//========== CONTROLLER CHE GESTISCE LE RICHIESTE INFO DEGLI EVENTI ========
 	@RequestMapping(value="/evento/{id}", method=RequestMethod.GET)
-	public ModelAndView infoEvento (@PathVariable Integer id) { //[ il controller ha come parametro l'ID dell'evento che verrà
+	public ModelAndView infoEvento (@PathVariable Integer id,Principal principal) { //[ il controller ha come parametro l'ID dell'evento che verrà
 		ModelAndView mav = new ModelAndView();					//passato nell'indirizzo. Es www.sito/evento/7 ==> id=7 ]
 		mav.setViewName("infoEvento.html");
 		Evento evento = eventorepository.getOne(id); // [ funzione dao che seleziona l'evento tramite l'id ]
 		mav.addObject("evento", evento); // [ aggiunto l'evento selezionato alla view in modo tale da poter essere
 										// visualizzato ]
+		
+		User u=userRepository.findByUsername(principal.getName()); 
+		mav.addObject("user", u);		
 		return mav;
 	}
 	
@@ -104,23 +108,15 @@ public class desktopController {
 	
 	
 	
-	@RequestMapping(value="/userpage", method=RequestMethod.GET)
-	public ModelAndView userpage() {
-		ModelAndView mav = new ModelAndView();	
-		mav.setViewName("userPage.html");
-		
-		
-		return mav;
-	}
-	
-	
 	
 	@RequestMapping(value="/usershopping", method=RequestMethod.GET)
-	public ModelAndView usershopping() {
+	public ModelAndView usershopping(Principal principal) {
 		ModelAndView mav = new ModelAndView();	
 		mav.setViewName("acquistiUser.html");
 		
-		
+		User u=userRepository.findByUsername(principal.getName()); 
+		mav.addObject("user", u);		
+				
 		return mav;
 	}
 	
@@ -137,6 +133,23 @@ public class desktopController {
 	    //System.out.println(u.getId()+" "+ (roleRepository.findByRole("admin").getId()));
 	    urService.insertAdminRole(u,roleRepository.findByRole("admin"), new User_Role()); //affido il ruolo admin al nuovo account
 	    
+		return mav;
+	}
+	
+	
+	@RequestMapping(value="/userpage", method=RequestMethod.GET)
+	public ModelAndView request_userinfo(Principal principal) {
+		
+		ModelAndView mav = new ModelAndView();	
+		mav.setViewName("userPage.html");
+		
+		User u=userRepository.findByUsername(principal.getName());  // la classe Principal, è importata da Spring Security e permette di poter
+		mav.addObject("user", u);									// identificare l'username dell'user che ha effettuato l'accesso
+		
+		
+		
+				
+		
 		return mav;
 	}
 	

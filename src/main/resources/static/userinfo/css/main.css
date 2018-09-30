@@ -1,0 +1,54 @@
+@charset "ISO-8859-1";
+
+
+.title-box {
+	width:100%
+}
+
+.title-box > h {
+	text-align:center;
+}
+
+.footer {
+	background-color: #1d2124;
+    margin-bottom: 0px;
+    padding: 15px;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.footer > p {
+	color:white;
+	text-align:center;
+	
+}
+
+.infoevento-box {
+	margin-top:100px;
+	border-radius: 2.3rem;
+	
+}
+
+.dati-box {
+	margin-left:10px;
+}
+
+.nav-link > h3  {
+	text-align:center;
+}
+
+.nav-link > h6 , .nav-link > p {
+	display:inline-block;
+}
+
+.payment-box {
+	width:100%;
+	text-align:right;
+	margin-top:25px;
+}
+
+.image-box > img{
+	width: 750px;
+    height: 400px;
+}

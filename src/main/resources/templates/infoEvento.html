@@ -22,7 +22,7 @@
 		<!-- ===== NAVBAR ====== -->
     <nav class="navbar navbar-expand-lg navbar-dark" id="#mynav">
   		<!-- Logo Brand -->
-  		<a class="navbar-brand" href="#">EasyTicket</a>
+  		<a class="navbar-brand" href="/">EasyTicket</a>
   		
   		<!-- Button per riduzione schermo -->
   		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,6 +52,13 @@
     	  </div>
     	  <div sec:authorize="isAuthenticated()" class="nav-box dropdown">
     	  	<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fas fa-user"></i>  My Account</button>
+    	  	<div class="dropdown-menu">
+   			  <a class="dropdown-item" href="/userpage"> <i class="fas fa-file-alt"></i> Profilo</a>
+   			  <div class="dropdown-divider"></div>
+    		  <a class="dropdown-item" href="/usershopping"> <i class="far fa-credit-card"></i> Acquisti</a>
+    		  <div class="dropdown-divider"></div>
+    		  <a class="dropdown-item" href="/logout"> <i class="fas fa-sign-out-alt"></i> Logout</a>
+  			</div>
     	  </div>
        </div>
 	</nav> <!-- END NAVBAR -->
