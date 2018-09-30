@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.ingsoft.model.Evento;
+import com.project.ingsoft.repository.CarrelloRepository;
 import com.project.ingsoft.repository.EventoRepository;
 
 /*
@@ -26,6 +27,9 @@ public class EventoServiceImpl implements EventoService {
 	
 	@Autowired
 	EventoRepository EventoRep;
+	
+	@Autowired
+	CarrelloRepository CarrelloRep;
 	
 	@Override
 	public void saveEvento(Evento e) {
@@ -47,6 +51,12 @@ public class EventoServiceImpl implements EventoService {
 	@Override
 	public List<Evento> getbyCosto(float costo) {
 		return EventoRep.getbyCosto(costo);
+	}
+
+	@Override
+	public Evento getbyID(Integer id) {
+	
+		return EventoRep.getOne(id);
 	}
 
 }

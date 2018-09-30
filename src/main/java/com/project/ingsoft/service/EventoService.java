@@ -29,5 +29,7 @@ public interface EventoService {
 	public List<Evento> getbyTipologia(String Tipologia);
 		
 	public List<Evento> getbyCosto(float costo);
+	
+	public Evento getbyID(Integer id);
 
 }

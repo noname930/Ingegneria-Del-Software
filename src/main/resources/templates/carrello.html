@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>EasyTicket</title>
+	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	
+	<!-- Awesome Icon -->	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+	
+	<!-- Animated CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="/evento/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/carrello/css/main.css">
+</head>
+<body>
+	<!-- ===== NAVBAR ====== -->
+    <nav class="navbar navbar-expand-lg navbar-dark" id="#mynav">
+  		<!-- Logo Brand -->
+  		<a class="navbar-brand" href="/">EasyTicket</a>
+  		
+  		<!-- Button per riduzione schermo -->
+  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    	<span class="navbar-toggler-icon"></span>
+  		</button>
+		
+		<!-- Corpo della navbar -->
+  		<div class="collapse navbar-collapse" id="navbarSupportedContent"> <!-- Collapse: riduce su schermi piccoli -->
+    	  <ul class="navbar-nav mr-auto ml-auto">
+    	   <li class="nav-item">
+    	   <div class="nav-box">
+			<form class="form-inline my-2 my-lg-0">
+      			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+     			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  			</form>
+  			</div>
+  			</li>
+    	  </ul>
+    	  
+    	 <div class="nav-box">
+    	  <form action="">
+    	  	<a class="btn btn-warning" href="/carrello"><i class="fas fa-shopping-cart"></i>  Carrello</a>
+    	  </form>
+    	 </div>
+    	  <div sec:authorize="isAnonymous()" class="nav-box dropdown">    	
+    	  	<a class="btn btn-primary" href="/login"><i class="fas fa-user"></i>  Login</a>   	  				
+    	  </div>
+    	  <div sec:authorize="isAuthenticated()" class="nav-box dropdown">
+    	  	<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fas fa-user"></i>  My Account</button>
+    	  	<div class="dropdown-menu">
+   			  <a class="dropdown-item" href="/userpage"> <i class="fas fa-file-alt"></i> Profilo</a>
+   			  <div class="dropdown-divider"></div>
+    		  <a class="dropdown-item" href="/usershopping"> <i class="far fa-credit-card"></i> Acquisti</a>
+    		  <div class="dropdown-divider"></div>
+    		  <a class="dropdown-item" href="/logout"> <i class="fas fa-sign-out-alt"></i> Logout</a>
+  			</div>
+    	  </div>
+       </div>
+	</nav> <!-- END NAVBAR -->
+	
+	
+	
+	<div class="jumbotron">
+		<div class="row item-evento">
+			<div class="col-2">
+				<div class="img-box">
+					<img alt="immagine evento" src="https://via.placeholder.com/200x200">
+				</div>
+			</div>
+			<div class="col-7 box-items">
+				<div class="row">
+					<div class="col item-info">
+						<p>titolo</p>
+					</div>
+					<div class="col item-info">
+						<p>paese</p>
+					</div>
+					<div class="col item-info">
+						<p>indirizzo</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col item-info">
+						<p>tipologia</p>
+					</div>
+					<div class="col item-info">
+						<p>sotto tipologia</p>
+					</div>
+					<div class="col item-info">
+						<p>costo</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="button-box">
+					<a class="btn btn-success" href="/carrello"><i class="far fa-credit-card"></i>Acquista</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

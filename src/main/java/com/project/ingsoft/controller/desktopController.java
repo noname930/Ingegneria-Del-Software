@@ -26,25 +26,28 @@ import com.project.ingsoft.repository.EventoRepository;
 import com.project.ingsoft.repository.RoleRepository;
 import com.project.ingsoft.repository.UserRepository;
 import com.project.ingsoft.repository.UserRoleRepository;
+import com.project.ingsoft.service.EventoService;
+import com.project.ingsoft.service.RoleService;
 import com.project.ingsoft.service.UserRoleService;
+import com.project.ingsoft.service.UserService;
 
 @Controller
 public class desktopController {
 	
 	@Autowired
-	private EventoRepository eventorepository;
+	private EventoService eventoservice;
 	
 	@Autowired
 	private UserRoleService urService;
 	
 	@Autowired
-	private RoleRepository roleRepository;
+	private RoleService roleService;
 	
 	@Autowired // entità che cripta le password
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Autowired
-	private UserRepository userRepository;
+	private UserService userService;
 	
 	
 	//============= CONTROLLER CHE GESTICE LE RICHIESTE SULL'INDIRIZZO {sitoweb/} ==============
@@ -59,11 +62,11 @@ public class desktopController {
 		System.out.println("Session id: " + httpSession.getId());
 		
 		//========== creazione liste di eventi in base alle tipologie ================
-		List<Evento> lista_concerti = eventorepository.getbyTipologia("concerto");
-		List<Evento> lista_fiere = eventorepository.getbyTipologia("fiera");
-		List<Evento> lista_sports = eventorepository.getbyTipologia("sport");
-		List<Evento> lista_teatri = eventorepository.getbyTipologia("teatro");
-		List<Evento> lista_cinema = eventorepository.getbyTipologia("cinema");
+		List<Evento> lista_concerti = eventoservice.getbyTipologia("concerto");
+		List<Evento> lista_fiere = eventoservice.getbyTipologia("fiera");
+		List<Evento> lista_sports = eventoservice.getbyTipologia("sport");
+		List<Evento> lista_teatri = eventoservice.getbyTipologia("teatro");
+		List<Evento> lista_cinema = eventoservice.getbyTipologia("cinema");
 		
 		// ========= aggiungo le liste di oggetti creati alla pagina web ============
 		mav.addObject("lista_concerti", lista_concerti);
@@ -71,7 +74,7 @@ public class desktopController {
 		mav.addObject("lista_sports", lista_sports);
 		mav.addObject("lista_teatri", lista_teatri);
 		mav.addObject("lista_cinema", lista_cinema);
-			
+		
 		return mav;
 	}
 	
@@ -81,12 +84,22 @@ public class desktopController {
 	public ModelAndView infoEvento (@PathVariable Integer id,Principal principal) { //[ il controller ha come parametro l'ID dell'evento che verrà
 		ModelAndView mav = new ModelAndView();					//passato nell'indirizzo. Es www.sito/evento/7 ==> id=7 ]
 		mav.setViewName("infoEvento.html");
-		Evento evento = eventorepository.getOne(id); // [ funzione dao che seleziona l'evento tramite l'id ]
+		System.out.println(id);
+		Evento evento = eventoservice.getbyID(id);// [ funzione dao che seleziona l'evento tramite l'id ]
 		mav.addObject("evento", evento); // [ aggiunto l'evento selezionato alla view in modo tale da poter essere
 										// visualizzato ]
+		try {
 		
-		User u=userRepository.findByUsername(principal.getName()); 
-		mav.addObject("user", u);		
+			User u=userService.findByUsername(principal.getName()); 
+			mav.addObject("user", u);
+		
+		}
+		catch (NullPointerException e) {
+			
+			e.printStackTrace();
+		}
+		
+		
 		return mav;
 	}
 	
@@ -108,17 +121,25 @@ public class desktopController {
 	
 	
 	
-	
+/*	
 	@RequestMapping(value="/usershopping", method=RequestMethod.GET)
 	public ModelAndView usershopping(Principal principal) {
 		ModelAndView mav = new ModelAndView();	
 		mav.setViewName("acquistiUser.html");
 		
-		User u=userRepository.findByUsername(principal.getName()); 
-		mav.addObject("user", u);		
-				
+		try {
+			
+			User u=userService.findByUsername(principal.getName()); 
+			mav.addObject("user", u);
+		
+		}
+		catch (NullPointerException e) {
+			
+			e.printStackTrace();
+		}				
 		return mav;
 	}
+	*/
 	
 	@RequestMapping(value="/registration", method=RequestMethod.GET)
 	public ModelAndView registration(User u,BindingResult bindingresult) {
@@ -129,9 +150,9 @@ public class desktopController {
 	    
 	    u.setPassword(bCryptPasswordEncoder.encode(u.getPassword())); // encrypt della pass inserita dall'user
 	    u.setEnabled(1); // abilito l'account
-	    userRepository.save(u); // salvo l'account	    
+	    userService.saveUser(u); // salvo l'account	    
 	    //System.out.println(u.getId()+" "+ (roleRepository.findByRole("admin").getId()));
-	    urService.insertAdminRole(u,roleRepository.findByRole("admin"), new User_Role()); //affido il ruolo admin al nuovo account
+	    urService.insertAdminRole(u,roleService.findbyRole("admin"), new User_Role()); //affido il ruolo admin al nuovo account
 	    
 		return mav;
 	}
@@ -143,15 +164,33 @@ public class desktopController {
 		ModelAndView mav = new ModelAndView();	
 		mav.setViewName("userPage.html");
 		
-		User u=userRepository.findByUsername(principal.getName());  // la classe Principal, è importata da Spring Security e permette di poter
+		User u=userService.findByUsername(principal.getName());  // la classe Principal, è importata da Spring Security e permette di poter
 		mav.addObject("user", u);									// identificare l'username dell'user che ha effettuato l'accesso
-		
-		
-		
-				
+					
 		
 		return mav;
 	}
+	
+	
+	@RequestMapping(value="/carrello", method=RequestMethod.GET)
+	public ModelAndView usershopping(Principal principal) {
+		ModelAndView mav = new ModelAndView();	
+		mav.setViewName("carrello.html");
+		
+		try {
+			
+			User u=userService.findByUsername(principal.getName()); 
+			mav.addObject("user", u);
+		
+		}
+		catch (NullPointerException e) {
+			
+			e.printStackTrace();
+		}				
+		return mav;
+	}
+	
+	
 	
 	
 }
