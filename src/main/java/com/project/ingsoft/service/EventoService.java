@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 
+import com.project.ingsoft.model.Carrello;
 import com.project.ingsoft.model.Evento;
 
 /*
@@ -31,5 +32,7 @@ public interface EventoService {
 	public List<Evento> getbyCosto(float costo);
 	
 	public Evento getbyID(Integer id);
+	
+	public List<Evento> getmultiEventsbyIDs(List<Carrello> items);
 
 }

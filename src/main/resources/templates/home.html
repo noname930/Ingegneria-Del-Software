@@ -54,7 +54,7 @@
     	  	<a class="btn btn-primary" href="/login"><i class="fas fa-user"></i>  Login</a>   	  				
     	  </div>
     	  <div sec:authorize="isAuthenticated()" class="nav-box dropdown">
-    	  	<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fas fa-user"></i>  My Account</button>
+    	  	<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" th:text="'Account: ' + ${#authentication.getPrincipal().getUsername()}"><i class="fas fa-user"></i></button>
     	  	<div class="dropdown-menu">
    			  <a class="dropdown-item" href="/userpage"> <i class="fas fa-file-alt"></i> Profilo</a>
    			  <div class="dropdown-divider"></div>
@@ -143,7 +143,7 @@
 			      <div class="card-footer">
 				     <div class="button-box">
 				     	<a class="btn btn-info btn-card" th:href="${'/evento/'+ Evento.id}"><i class="fas fa-info"></i>   Info</a>
-				     	<a class="btn btn-warning btn-card"><i class="fas fa-shopping-cart"></i>   Add</a>
+				     	<a class="btn btn-warning btn-card" th:href="${'/carrello/add/item/' + Evento.id}"><i class="fas fa-shopping-cart"></i>   Add</a>
 				     </div>
 				  </div>
 				</div>
@@ -161,7 +161,7 @@
 				  <div class="card-footer">
 				     <div class="button-box">
 				     	<a class="btn btn-info btn-card" th:href="${'/evento/'+ Evento.id}"><i class="fas fa-info"></i>   Info</a>
-				     	<a class="btn btn-warning btn-card"><i class="fas fa-shopping-cart"></i>   Add</a>
+				     	<a class="btn btn-warning btn-card" th:href="${'/carrello/add/item/' + Evento.id}"><i class="fas fa-shopping-cart"></i>   Add</a>
 				     </div>
 				  </div>
 				</div>
@@ -179,7 +179,7 @@
 				  <div class="card-footer">
 				     <div class="button-box">
 				     	<a class="btn btn-info btn-card" th:href="${'/evento/'+ Evento.id}"><i class="fas fa-info"></i>   Info</a>
-				     	<a class="btn btn-warning btn-card"><i class="fas fa-shopping-cart"></i>   Add</a>
+				     	<a class="btn btn-warning btn-card" th:href="${'/carrello/add/item/' + Evento.id}"><i class="fas fa-shopping-cart"></i>   Add</a>
 				     </div>
 				  </div>
 				</div>
@@ -197,7 +197,7 @@
 				  <div class="card-footer">
 				     <div class="button-box">
 				     	<a class="btn btn-info btn-card" th:href="${'/evento/'+ Evento.id}"><i class="fas fa-info"></i>   Info</a>
-				     	<a class="btn btn-warning btn-card"><i class="fas fa-shopping-cart"></i>   Add</a>
+				     	<a class="btn btn-warning btn-card" th:href="${'/carrello/add/item/' + Evento.id}"><i class="fas fa-shopping-cart"></i>   Add</a>
 				     </div>
 				  </div>
 				</div>
@@ -215,7 +215,7 @@
 				  <div class="card-footer">
 				     <div class="button-box">
 				     	<a class="btn btn-info btn-card" th:href="${'/evento/'+ Evento.id}"><i class="fas fa-info"></i>   Info</a>
-				     	<a class="btn btn-warning btn-card"><i class="fas fa-shopping-cart"></i>   Add</a>
+				     	<a class="btn btn-warning btn-card" th:href="${'/carrello/add/item/' + Evento.id}"><i class="fas fa-shopping-cart"></i>   Add</a>
 				     </div>
 				  </div>
 				</div>

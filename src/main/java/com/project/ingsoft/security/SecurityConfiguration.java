@@ -73,7 +73,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         	.antMatchers("/").permitAll() //accesso alla permesso a tutti
         	.antMatchers("/evento/**").permitAll()
         	.antMatchers("/registration").permitAll()
-        	.antMatchers("/userpage", "/usershopping","/api/get/userinfo").hasAuthority("ROLE_admin")
+        	.antMatchers("/userpage", "/carrello/**","/api/get/userinfo").hasAuthority("ROLE_admin")
         	.anyRequest().authenticated().and().httpBasic()// autentico la richiesta di login
             .and()
          .formLogin()

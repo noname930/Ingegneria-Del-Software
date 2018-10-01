@@ -20,6 +20,37 @@ public class CarrelloServiceImpl implements CarrelloService{
 		
 		return CarrelloRep.findbyUserId(user_id);
 	}
+
+
+	@Override
+	public void deleteItemByEventoID(Integer evento_id) {
+		
+		List<Carrello> lista_eventi= CarrelloRep.findbyEventoId(evento_id);
+		
+		CarrelloRep.delete(lista_eventi.get(0));
+		
+		
+	}
+
+
+	@Override
+	public void addItemCarrello(Integer user_id, Integer evento_id) {
+		
+		Carrello c= new Carrello();
+		c.setUser_id(user_id);
+		c.setEvento_id(evento_id);
+		CarrelloRep.save(c);
+		
+	}
+
+
+	@Override
+	public void deleteItemByEventoANDUserID(Integer user_id, Integer evento_id) {
+		// TODO Auto-generated method stub
+		List<Carrello> lista_eventi= CarrelloRep.findbyEventoAndUserID(user_id, evento_id);
+		CarrelloRep.delete(lista_eventi.get(0));
+		
+	}
 	
 	
 

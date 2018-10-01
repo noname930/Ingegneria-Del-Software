@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.project.ingsoft.model.Carrello;
 import com.project.ingsoft.model.Evento;
 import com.project.ingsoft.model.User;
 import com.project.ingsoft.model.User_Role;
@@ -26,6 +28,7 @@ import com.project.ingsoft.repository.EventoRepository;
 import com.project.ingsoft.repository.RoleRepository;
 import com.project.ingsoft.repository.UserRepository;
 import com.project.ingsoft.repository.UserRoleRepository;
+import com.project.ingsoft.service.CarrelloService;
 import com.project.ingsoft.service.EventoService;
 import com.project.ingsoft.service.RoleService;
 import com.project.ingsoft.service.UserRoleService;
@@ -48,6 +51,9 @@ public class desktopController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private CarrelloService carrService;
 	
 	
 	//============= CONTROLLER CHE GESTICE LE RICHIESTE SULL'INDIRIZZO {sitoweb/} ==============
@@ -121,25 +127,6 @@ public class desktopController {
 	
 	
 	
-/*	
-	@RequestMapping(value="/usershopping", method=RequestMethod.GET)
-	public ModelAndView usershopping(Principal principal) {
-		ModelAndView mav = new ModelAndView();	
-		mav.setViewName("acquistiUser.html");
-		
-		try {
-			
-			User u=userService.findByUsername(principal.getName()); 
-			mav.addObject("user", u);
-		
-		}
-		catch (NullPointerException e) {
-			
-			e.printStackTrace();
-		}				
-		return mav;
-	}
-	*/
 	
 	@RequestMapping(value="/registration", method=RequestMethod.GET)
 	public ModelAndView registration(User u,BindingResult bindingresult) {
@@ -177,18 +164,71 @@ public class desktopController {
 		ModelAndView mav = new ModelAndView();	
 		mav.setViewName("carrello.html");
 		
+		
 		try {
 			
 			User u=userService.findByUsername(principal.getName()); 
-			mav.addObject("user", u);
-		
+			mav.addObject("user", u);	
+			List<Carrello> carrelloItems=carrService.findbyUserId(u.getId()); //insieme oggetti di tipo "carrello" che rappresentano gli item scelti dall'user
+			List<Evento> listEventi=eventoservice.getmultiEventsbyIDs(carrelloItems); //ad ogni oggetto di tipo "carrello" riesco ad individuare il corrispettivo evento scelto
+			System.out.println(listEventi.toString());
+			
+			
+			mav.addObject("eventi",listEventi);
 		}
 		catch (NullPointerException e) {
 			
 			e.printStackTrace();
-		}				
+		}	
+		
+		
+		
 		return mav;
 	}
+	
+	
+	@RequestMapping(value="/carrello/delete/item/{id}", method=RequestMethod.GET)
+	public ModelAndView deleteCarrelloItem(@PathVariable Integer id, Principal principal)
+	{
+		ModelAndView mav = new ModelAndView();	
+		
+		try {
+			User u=userService.findByUsername(principal.getName()); 
+			carrService.deleteItemByEventoANDUserID(u.getId(),id);
+			mav.setViewName("redirect:/carrello");
+			
+		}
+		catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		
+		return mav;
+	}
+	
+	
+	
+	@RequestMapping(value="/carrello/add/item/{id}", method=RequestMethod.GET)
+	public ModelAndView addCarrelloItem(@PathVariable Integer id, Principal principal)
+	{
+		ModelAndView mav = new ModelAndView();	
+		
+		try {
+			User u=userService.findByUsername(principal.getName()); 
+			carrService.addItemCarrello(u.getId(), id);
+			mav.setViewName("redirect:/home");
+			
+		}
+		catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		
+		return mav;
+	}
+	
+	
+	
+	
+	
 	
 	
 	

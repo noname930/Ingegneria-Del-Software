@@ -1,11 +1,13 @@
 package com.project.ingsoft.service;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.ingsoft.model.Carrello;
 import com.project.ingsoft.model.Evento;
 import com.project.ingsoft.repository.CarrelloRepository;
 import com.project.ingsoft.repository.EventoRepository;
@@ -57,6 +59,20 @@ public class EventoServiceImpl implements EventoService {
 	public Evento getbyID(Integer id) {
 	
 		return EventoRep.getOne(id);
+	}
+
+	@Override
+	public List<Evento> getmultiEventsbyIDs(List<Carrello> items) {
+		
+		List<Evento> eventi=new ArrayList<Evento>();
+		Integer evento_id;
+		
+		for(int i=0;i<items.size();i++) {
+			evento_id=items.get(i).getEvento_id();
+			eventi.add(EventoRep.getOne(evento_id));
+		}
+		
+		return eventi ;
 	}
 
 }

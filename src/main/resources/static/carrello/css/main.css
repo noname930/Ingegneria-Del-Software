@@ -1,6 +1,23 @@
 @charset "UTF-8";
 
 
+p {
+	margin: auto;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.container-eventi{
+	border-style: solid;
+	border-color: gray;
+    border-width: 0.09rem;
+    box-shadow: 0px 4px 16px #888888;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
 img{
 	width:100px;
 	height:100px;
@@ -24,10 +41,47 @@ img{
 
 .item-info {
 	
+	border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+	
 }
 
+.no-margin {
+	
+    margin-right: 0px;
+    margin-left: 0px;
+	
+}
 
 .box-items{
 	display:grid;
 	text-align: center;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.button-box {
+	text-align: center;
+	margin: 7px;
+	
+}
+
+.header-box {
+	margin-top: 50px;
+}
+
+.footer {
+	background-color: #1d2124;
+    margin-bottom: 0px;
+    padding: 15px;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.footer > p {
+	color:white;
+	text-align:center;
+	
 }
