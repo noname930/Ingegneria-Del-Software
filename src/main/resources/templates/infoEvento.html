@@ -51,7 +51,7 @@
     	  	<a class="btn btn-primary" href="/login"><i class="fas fa-user"></i>  Login</a>   	  				
     	  </div>
     	  <div sec:authorize="isAuthenticated()" class="nav-box dropdown">
-    	  	<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fas fa-user"></i>  My Account</button>
+    	  	<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" th:text="'Account: ' + ${#authentication.getPrincipal().getUsername()}"><i class="fas fa-user"></i></button>
     	  	<div class="dropdown-menu">
    			  <a class="dropdown-item" href="/userpage"> <i class="fas fa-file-alt"></i> Profilo</a>
    			  <div class="dropdown-divider"></div>
@@ -112,7 +112,7 @@
 		</div>
 		<div class="row">
 			<div class="payment-box">
-				<button class="btn btn-warning"><i class="fas fa-shopping-cart"></i>   Aggiungi al Carrello</button>
+				<a class="btn btn-warning" th:href="${'/carrello/add/item/' + evento.id}"><i class="fas fa-shopping-cart"></i>   Aggiungi al Carrello</a>
 				<button class="btn btn-success"><i class="far fa-credit-card"></i>    Acquista Subito</button>
 			</div>
 		</div>
