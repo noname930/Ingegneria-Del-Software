@@ -136,8 +136,22 @@
 				</div>
 			</div>
 			<div class="col-2">
-				<div class="button-box">				
-						<a class="btn btn-success" href="/carrello"><i class="far fa-credit-card"></i>  Acquista</a>					
+				<div class="button-box">									
+				 <form th:action="${'/acquisto/response/' + lista_eventi.id}" method='POST' id='checkout-form'>
+    				<input type='hidden' th:value='${amount}' name='amount' />
+   					 <!-- NOTE: data-key/data-amount/data-currency will be rendered by Thymeleaf -->
+    				<script
+       					src='https://checkout.stripe.com/checkout.js'
+       					class='stripe-button'
+      					th:attr='data-key=${stripePublicKey}, data-amount=${amount}, data-currency=${currency}'
+       					data-name='EasyTicket'
+       					data-description='Modalità di pagamento'
+	   					data-image ='http://www.baeldung.com/wp-content/themes/baeldung/favicon/android-chrome-192x192.png'
+       					data-locale='auto'
+       					data-label='Acquista Subito'
+      					data-zip-code='false'>
+   					</script>
+				</form>				
 				</div>
 				<div class="button-box">				
 						<a class="btn btn-danger" th:href="${'/carrello/delete/item/' + lista_eventi.id}"><i class="far fa-trash-alt"></i>  Elimina</a>					

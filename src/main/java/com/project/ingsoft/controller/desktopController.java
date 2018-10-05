@@ -201,9 +201,15 @@ public class desktopController {
 			
 			User u=userService.findByUsername(principal.getName()); 
 			mav.addObject("user", u);	
-			List<Carrello> carrelloItems=carrService.findbyUserId(u.getId()); //insieme oggetti di tipo "carrello" che rappresentano gli item scelti dall'user
-			List<Evento> listEventi=eventoservice.getmultiEventsbyIDs(carrelloItems); //ad ogni oggetto di tipo "carrello" riesco ad individuare il corrispettivo evento scelto
+			//List<Carrello> carrelloItems=carrService.findbyUserId(u.getId()); //insieme oggetti di tipo "carrello" che rappresentano gli item scelti dall'user
+		//	List<Evento> listEventi=eventoservice.getmultiEventsbyIDs(carrelloItems); //ad ogni oggetto di tipo "carrello" riesco ad individuare il corrispettivo evento scelto
+			List<Evento> listEventi=eventoservice.getEventiofCarrelloUser(u.getId());
 			System.out.println(listEventi.toString());
+			//User u=userService.findByUsername(principal.getName()); 
+			mav.addObject("user", u);
+		    mav.addObject("amount", 40 * 100); // in cents
+		    mav.addObject("stripePublicKey", stripePublicKey);
+		    mav.addObject("currency", ChargeRequest.Currency.EUR);			
 			
 			
 			mav.addObject("eventi",listEventi);
@@ -324,13 +330,14 @@ public class desktopController {
 			
 			User u=userService.findByUsername(principal.getName()); 
 			mav.addObject("user", u);	
-			List<Acquisto> Items=acqService.findbyUserId(u.getId()); //insieme oggetti di tipo "acquisto" che rappresentano gli item scelti dall'user
-			List<Evento> listEventi=eventoservice.getmultiEventsbyID(Items); //ad ogni oggetto di tipo "carrello" riesco ad individuare il corrispettivo evento scelto
-		//	List<AcquistoUser> acquisti_user=eventoservice.getAcquistiOfUser(u.getId());
-		//	System.out.println(acquisti_user.toString());
+		//	List<Acquisto> Items=acqService.findbyUserId(u.getId()); //insieme oggetti di tipo "acquisto" che rappresentano gli item scelti dall'user
+		//	List<Evento> listEventi=eventoservice.getmultiEventsbyID(Items); //ad ogni oggetto di tipo "carrello" riesco ad individuare il corrispettivo evento scelto
+			List<AcquistoUser> acquisti_user=eventoservice.getAcquistiOfUser(u.getId());
+			System.out.println(acquisti_user.toString());
 			
 			
-			mav.addObject("eventi",listEventi);
+			//mav.addObject("eventi",listEventi);
+			mav.addObject("eventi",acquisti_user);
 		}
 		catch (NullPointerException e) {
 			
@@ -343,15 +350,15 @@ public class desktopController {
 	}
 	
 
-/*	@RequestMapping(value="/QRcode/{evento_id}", method=RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
-	public ResponseEntity<byte[]> qrcode(@PathVariable Integer id, Principal principal) {
+	@RequestMapping(value="/QRcode/{codice}", method=RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
+	public ResponseEntity<byte[]> qrcode(@PathVariable String codice, Principal principal) {
 		try {
 			
 			User u=userService.findByUsername(principal.getName());
 			
 
 			return ResponseEntity.ok().cacheControl(CacheControl.maxAge(30, TimeUnit.MINUTES))
-					.body(imageService.generateQRCodeAsync(acquisto_code, 256, 256).get());
+					.body(imageService.generateQRCodeAsync(codice, 256, 256).get());
 		}
 		catch(Exception e ) {
 			e.printStackTrace();
@@ -359,7 +366,7 @@ public class desktopController {
 			
 		}
 		return null;
-	}*/
+	}
 	
 	
 }

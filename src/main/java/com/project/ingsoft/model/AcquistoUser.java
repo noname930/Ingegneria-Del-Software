@@ -1,6 +1,6 @@
 package com.project.ingsoft.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class AcquistoUser {
 	

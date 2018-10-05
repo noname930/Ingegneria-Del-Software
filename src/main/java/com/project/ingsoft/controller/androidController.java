@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.ingsoft.model.AcquistoUser;
 import com.project.ingsoft.model.Carrello;
 import com.project.ingsoft.model.Evento;
 import com.project.ingsoft.model.User;
@@ -103,13 +104,19 @@ public class androidController {
 	@RequestMapping(value="/api/get/carrello")
 	public @ResponseBody List<Evento> getCarrello(Principal principal) {
 		User u = userRepository.findByUsername(principal.getName());
-		List<Carrello> carrelloItems=carrService.findbyUserId(u.getId()); 
-		List<Evento> listEventi=eventoservice.getmultiEventsbyIDs(carrelloItems); 
+	//	List<Carrello> carrelloItems=carrService.findbyUserId(u.getId()); 
+	//	List<Evento> listEventi=eventoservice.getmultiEventsbyIDs(carrelloItems); 
+		List<Evento> listEventi=eventoservice.getEventiofCarrelloUser(u.getId());
 		return listEventi;
 	}
 
 	
-	
+	@RequestMapping(value="/api/get/acquisti")
+	public @ResponseBody List<AcquistoUser> getAcquisti(Principal principal){
+		User u = userRepository.findByUsername(principal.getName());
+		return eventoservice.getAcquistiOfUser(u.getId());
+
+	}
 	
 	
 	

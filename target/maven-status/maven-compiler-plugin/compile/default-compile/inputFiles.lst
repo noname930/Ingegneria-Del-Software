@@ -1,14 +1,20 @@
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/service/CarrelloService.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/service/CarrelloServiceImpl.java
+/Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/service/AcquistoServiceImpl.java
+/Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/model/Acquisto.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/model/Carrello.java
+/Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/model/AcquistoUser.java
+/Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/repository/AcquistoRepository.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/service/EventoService.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/service/UserRoleService.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/repository/UserRepository.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/repository/UserRoleRepository.java
+/Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/service/AcquistoService.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/IngsoftwProjectApplication.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/security/SecurityConfiguration.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/service/RoleServiceImpl.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/service/RoleService.java
+/Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/service/ImageService.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/model/User_Role.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/service/UserServiceImpl.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/repository/EventoRepository.java
@@ -24,3 +30,5 @@
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/controller/androidController.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/service/UserRoleServiceImpl.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/model/Role.java
+/Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/model/ChargeRequest.java
+/Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/service/StripeService.java

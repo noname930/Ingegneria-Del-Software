@@ -91,11 +91,17 @@ public class EventoServiceImpl implements EventoService {
 		return eventi ;
 	}
 
-/*	@Override
+	@Override
 	public List<AcquistoUser> getAcquistiOfUser(Integer user_id) {
 		
 		return EventoRep.getAcquistiOfUser(user_id);
 	}
-*/
+
+	@Override
+	public List<Evento> getEventiofCarrelloUser(Integer user_id) {
+		// TODO Auto-generated method stub
+		return EventoRep.getEventiofCarrelloUser(user_id);
+	}
+
 
 }

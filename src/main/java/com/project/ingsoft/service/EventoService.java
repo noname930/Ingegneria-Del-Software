@@ -39,7 +39,9 @@ public interface EventoService {
 	
 	public List<Evento> getmultiEventsbyID(List<Acquisto> items);
 	
-//	public List<AcquistoUser> getAcquistiOfUser(Integer user_id);
+	public List<AcquistoUser> getAcquistiOfUser(Integer user_id);
+	
+	public List<Evento> getEventiofCarrelloUser(Integer user_id);
 
 
 }

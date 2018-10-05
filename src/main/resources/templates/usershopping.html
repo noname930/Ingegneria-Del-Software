@@ -76,7 +76,7 @@
 							<p class="bold">Titolo:</p>
 						</div>
 						<div class="row">
-							<p>[[${lista_eventi.nome}]]</p>
+							<p>[[${lista_eventi.nome_evento}]]</p>
 						</div>
 					</div>
 					<div class="col item-info">
@@ -133,7 +133,7 @@
 			</div>
 			<div class="col-2">
 				<div class="button-box">				
-						<a class="btn btn-info" th:href="${'/QRcode/'}"> <i class="fas fa-qrcode"></i> QR Code</a>			
+						<a class="btn btn-info" th:href="${'/QRcode/'+lista_eventi.acquisto_code}"> <i class="fas fa-qrcode"></i> QR Code</a>			
 						<!-- Modal -->
 					<!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 						  <div class="modal-dialog modal-dialog-centered" role="document">
