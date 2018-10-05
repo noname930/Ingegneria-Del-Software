@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	
+	<!-- Awesome Icon -->	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+	
+	<!-- Animated CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="/userinfo/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/acquisto_response/css/main.css">
+	<title>EasyTicket</title>
+</head>
+<body>
+	<!-- ===== NAVBAR ====== -->
+    <nav class="navbar navbar-expand-lg navbar-dark" id="#mynav">
+  		<!-- Logo Brand -->
+  		<a class="navbar-brand" href="/">EasyTicket</a>
+  		
+  		<!-- Button per riduzione schermo -->
+  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    	<span class="navbar-toggler-icon"></span>
+  		</button>
+		
+		<!-- Corpo della navbar -->
+  		<div class="collapse navbar-collapse" id="navbarSupportedContent"> <!-- Collapse: riduce su schermi piccoli -->
+    	  <ul class="navbar-nav mr-auto ml-auto">
+    	   <li class="nav-item">
+    	   <div class="nav-box">
+			<form class="form-inline my-2 my-lg-0">
+      			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+     			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  			</form>
+  			</div>
+  			</li>
+    	  </ul>
+    	  
+    	 <div class="nav-box">
+    	  <form action="">
+    	  	<a class="btn btn-warning" href="/carrello"><i class="fas fa-shopping-cart"></i>  Carrello</a>
+    	  </form>
+    	 </div>
+    	  <div sec:authorize="isAnonymous()" class="nav-box dropdown">    	
+    	  	<a class="btn btn-primary" href="/login"><i class="fas fa-user"></i>  Login</a>   	  				
+    	  </div>
+    	  <div sec:authorize="isAuthenticated()" class="nav-box dropdown">
+    	  	<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" th:text="'Account: ' + ${#authentication.getPrincipal().getUsername()}"><i class="fas fa-user"></i></button>
+    	  	<div class="dropdown-menu">
+   			  <a class="dropdown-item" href="/userpage"> <i class="fas fa-file-alt"></i> Profilo</a>
+   			  <div class="dropdown-divider"></div>
+    		  <a class="dropdown-item" href="/usershopping"> <i class="far fa-credit-card"></i> Acquisti</a>
+    		  <div class="dropdown-divider"></div>
+    		  <a class="dropdown-item" href="/logout"> <i class="fas fa-sign-out-alt"></i> Logout</a>
+  			</div>
+    	  </div>
+       </div>
+	</nav> <!-- END NAVBAR -->
+	
+	
+	
+	<div class="container container-reg">
+	 <div="box">
+	  <div class="row" style="justify-content: center">
+	  	<p>Acquisto avvenuto correttamente!</p>
+	  </div>
+	  <div class="row" style="justify-content: center">
+	      <div>ID Transazione: <span th:text='${chargeId}' /></div>
+	  </div>
+	  	 <div class="row" style="justify-content: center">
+	       <div>Stato Transazione: <span th:text='${status}' /></div>
+	  </div>
+	  	<div class="row" style="justify-content: center">
+	       <a class="btn btn-info" href="/usershopping">I miei Acquisti</a>
+	  </div>
+	  </div>
+	</div>
+	
+			<!-- <h3 th:if='${error}' th:text='${error}' style='color: red;'></h3>
+        <div th:unless='${error}'>
+            <h3 style='color: green;'>Success!</h3>
+            <div>Id.: <span th:text='${id}' /></div>
+            <div>Status: <span th:text='${status}' /></div>
+            <div>Charge id.: <span th:text='${chargeId}' /></div>
+            <div>Balance transaction id.: <span th:text='${balance_transaction}' /></div>
+        </div>
+        <a href='/'>Checkout again</a> -->
+	
+<div class="jumbotron jumbotron-fluid footer">
+  	<p>CopyrightÂ©2018 EasyTicket</p>
+ </div>
+	
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  	
+ 
+</body>
+</html>

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.project.ingsoft.model.AcquistoUser;
 import com.project.ingsoft.model.Evento;
 
 /*
@@ -33,6 +34,9 @@ public interface EventoRepository extends JpaRepository<Evento,Integer> {
 		
 	@Query("SELECT t FROM Evento t WHERE t.costo = ?1")
 	public List<Evento> getbyCosto(float costo);
+	
+	//@Query("SELECT NEW com.project.ingsoft.model.AcquistoUser(E.id,E.nome,E.data,E.costo,E.localita,E.tipologia,E.sotto_tipologia,E.indirizzo,E.img,A.user_id,A.code) FROM Acquisto A INNER JOIN Evento E ON (A.evento_id=E.id)  WHERE A.user_id=1")
+//	public List<AcquistoUser> getAcquistiOfUser(Integer user_id);
 	
 	
 		

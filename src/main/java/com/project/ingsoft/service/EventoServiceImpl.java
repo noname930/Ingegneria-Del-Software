@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.ingsoft.model.Acquisto;
+import com.project.ingsoft.model.AcquistoUser;
 import com.project.ingsoft.model.Carrello;
 import com.project.ingsoft.model.Evento;
 import com.project.ingsoft.repository.CarrelloRepository;
@@ -74,5 +76,26 @@ public class EventoServiceImpl implements EventoService {
 		
 		return eventi ;
 	}
+	
+	@Override
+	public List<Evento> getmultiEventsbyID(List<Acquisto> items) {
+		
+		List<Evento> eventi=new ArrayList<Evento>();
+		Integer evento_id;
+		
+		for(int i=0;i<items.size();i++) {
+			evento_id=items.get(i).getEvento_id();
+			eventi.add(EventoRep.getOne(evento_id));
+		}
+		
+		return eventi ;
+	}
+
+/*	@Override
+	public List<AcquistoUser> getAcquistiOfUser(Integer user_id) {
+		
+		return EventoRep.getAcquistiOfUser(user_id);
+	}
+*/
 
 }

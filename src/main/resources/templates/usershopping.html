@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	
+	<!-- Awesome Icon -->	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+	
+	<!-- Animated CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="/userinfo/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/usershopping/css/main.css">
+<title>EasyTicket</title>
+</head>
+<body>
+		<!-- ===== NAVBAR ====== -->
+    <nav class="navbar navbar-expand-lg navbar-dark" id="#mynav">
+  		<!-- Logo Brand -->
+  		<a class="navbar-brand" href="/">EasyTicket</a>
+  		
+  		<!-- Button per riduzione schermo -->
+  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    	<span class="navbar-toggler-icon"></span>
+  		</button>
+		
+		<!-- Corpo della navbar -->
+  		<div class="collapse navbar-collapse" id="navbarSupportedContent"> <!-- Collapse: riduce su schermi piccoli -->
+    	  <ul class="navbar-nav mr-auto ml-auto">
+    	   <li class="nav-item">
+    	   <div class="nav-box">
+			<form class="form-inline my-2 my-lg-0">
+      			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+     			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  			</form>
+  			</div>
+  			</li>
+    	  </ul>
+    	  
+    	 <div class="nav-box">
+    	  <form action="">
+    	  	<a class="btn btn-warning" href="/carrello" ><i class="fas fa-shopping-cart"></i>  Carrello</a>
+    	  </form>
+    	 </div>
+    	  <div sec:authorize="isAnonymous()" class="nav-box dropdown">    	
+    	  	<a class="btn btn-primary" href="/login"><i class="fas fa-user"></i>  Login</a>   	  				
+    	  </div>
+    	  <div sec:authorize="isAuthenticated()" class="nav-box dropdown">
+    	  	<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" th:text="'Account: ' + ${#authentication.getPrincipal().getUsername()}"><i class="fas fa-user"></i></button>
+    	  	<div class="dropdown-menu">
+   			  <a class="dropdown-item" href="/userpage"> <i class="fas fa-file-alt"></i> Profilo</a>
+   			  <div class="dropdown-divider"></div>
+    		  <a class="dropdown-item" href="/usershopping"> <i class="far fa-credit-card"></i> Acquisti</a>
+    		  <div class="dropdown-divider"></div>
+    		  <a class="dropdown-item" href="/logout"> <i class="fas fa-sign-out-alt"></i> Logout</a>
+  			</div>
+    	  </div>
+       </div>
+	</nav> <!-- END NAVBAR -->
+	
+	
+	
+	<div class="container container-eventi" th:each="lista_eventi : ${eventi}">
+		<div class="row item-evento">
+			<div class="col-2">
+				<div class="img-box">
+					<img alt="immagine evento" th:src="${lista_eventi.img}">
+				</div>
+			</div>
+			<div class="col-8 box-items">
+				<div class="row no-margin">
+					<div class="col item-info">
+						<div class="row">
+							<p class="bold">Titolo:</p>
+						</div>
+						<div class="row">
+							<p>[[${lista_eventi.nome}]]</p>
+						</div>
+					</div>
+					<div class="col item-info">
+						<div class="row">
+							<p class="bold">Località:</p>
+						</div>
+						<div class="row">
+							<p>[[${lista_eventi.localita}]]</p>
+						</div>	
+					</div>
+					<div class="col item-info">
+						<div class="row">
+							<p class="bold">Indirizzo:</p>
+						</div>
+						<div class="row">
+							<p>[[${lista_eventi.indirizzo}]]</p>
+						</div>
+					</div>
+				</div>
+				<div class="row no-margin">
+					<div class="col item-info">
+						<div class=row>
+							<p class="bold">Tipologia</p>
+						</div>
+						<div class="row">
+							<p>[[${lista_eventi.tipologia}]]</p>
+						</div>
+					</div>
+					<div class="col item-info">
+						<div class="row">
+							<p class="bold">Sotto Tipologia:</p>
+						</div>
+						<div class="row">
+							<p>[[${lista_eventi.sotto_tipologia}]]</p>
+						</div>
+					</div>
+					<div class="col item-info">
+						<div class="row">
+							<p class="bold">Data:</p>
+						</div>
+						<div class="row">
+							 <p>[[${lista_eventi.data}]]</p>
+						</div>
+					</div>
+					<div class="col item-info">
+						<div class="row">
+							<p class="bold">Costo:</p>
+						</div>
+						<div class="row">
+							<p>[[${lista_eventi.costo}]]</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-2">
+				<div class="button-box">				
+						<a class="btn btn-info" th:href="${'/QRcode/'}"> <i class="fas fa-qrcode"></i> QR Code</a>			
+						<!-- Modal -->
+					<!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						  <div class="modal-dialog modal-dialog-centered" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						        ...
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						        <button type="button" class="btn btn-primary">Save changes</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>			-->					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+
+
+
+	<div class="jumbotron jumbotron-fluid footer">
+  		<p>CopyrightÂ©2018 EasyTicket</p>
+ 	</div>
+	
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,26 +1,39 @@
 package com.project.ingsoft.controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.hibernate.engine.jdbc.StreamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.ingsoft.model.Acquisto;
+import com.project.ingsoft.model.AcquistoUser;
 import com.project.ingsoft.model.Carrello;
+import com.project.ingsoft.model.ChargeRequest;
+import com.project.ingsoft.model.ChargeRequest.Currency;
 import com.project.ingsoft.model.Evento;
 import com.project.ingsoft.model.User;
 import com.project.ingsoft.model.User_Role;
@@ -28,11 +41,17 @@ import com.project.ingsoft.repository.EventoRepository;
 import com.project.ingsoft.repository.RoleRepository;
 import com.project.ingsoft.repository.UserRepository;
 import com.project.ingsoft.repository.UserRoleRepository;
+import com.project.ingsoft.service.AcquistoService;
 import com.project.ingsoft.service.CarrelloService;
 import com.project.ingsoft.service.EventoService;
+import com.project.ingsoft.service.ImageService;
 import com.project.ingsoft.service.RoleService;
+import com.project.ingsoft.service.StripeService;
 import com.project.ingsoft.service.UserRoleService;
 import com.project.ingsoft.service.UserService;
+import com.stripe.exception.StripeException;
+import com.stripe.model.Charge;
+import com.sun.mail.iap.Response;
 
 @Controller
 public class desktopController {
@@ -54,6 +73,17 @@ public class desktopController {
 	
 	@Autowired
 	private CarrelloService carrService;
+	
+	@Autowired
+	private StripeService paymentsService;
+	
+	@Autowired
+	private AcquistoService acqService;
+	
+	@Autowired
+	private ImageService imageService;
+	
+	private String stripePublicKey="pk_test_SnryBHIG3it0bwxVO9ilP3R4";
 	
 	
 	//============= CONTROLLER CHE GESTICE LE RICHIESTE SULL'INDIRIZZO {sitoweb/} ==============
@@ -98,7 +128,9 @@ public class desktopController {
 		
 			User u=userService.findByUsername(principal.getName()); 
 			mav.addObject("user", u);
-		
+		    mav.addObject("amount", 40 * 100); // in cents
+		    mav.addObject("stripePublicKey", stripePublicKey);
+		    mav.addObject("currency", ChargeRequest.Currency.EUR);			
 		}
 		catch (NullPointerException e) {
 			
@@ -160,7 +192,7 @@ public class desktopController {
 	
 	
 	@RequestMapping(value="/carrello", method=RequestMethod.GET)
-	public ModelAndView usershopping(Principal principal) {
+	public ModelAndView carrello(Principal principal) {
 		ModelAndView mav = new ModelAndView();	
 		mav.setViewName("carrello.html");
 		
@@ -228,9 +260,106 @@ public class desktopController {
 	
 	
 	
+	@RequestMapping(value="/acquisto/item/{id}", method=RequestMethod.GET)
+	public ModelAndView acquistoItem(@PathVariable Integer id, Principal principal)
+	{
+		ModelAndView mav = new ModelAndView();
+		
+	    mav.addObject("amount", 50 * 100); // in cents
+	    mav.addObject("stripePublicKey", stripePublicKey);
+	    mav.addObject("currency", ChargeRequest.Currency.EUR);
+	    
+	    
+		mav.setViewName("acquisto.html");
+			
+		return mav;
+	}
+	
+	
+	@RequestMapping(value="/acquisto/response/{evento_id}", method=RequestMethod.POST)
+	public ModelAndView charge(@PathVariable Integer evento_id,ChargeRequest chargeRequest, Model model, Principal principal) throws StripeException {
+		ModelAndView mav = new ModelAndView();
+		
+		try {
+			User u=userService.findByUsername(principal.getName()); 
+			chargeRequest.setDescription("Example charge");
+			chargeRequest.setCurrency(Currency.EUR);
+			Charge charge = paymentsService.charge(chargeRequest);
+			model.addAttribute("id", charge.getId());
+			model.addAttribute("status", charge.getStatus());
+			model.addAttribute("chargeId", charge.getId());
+			model.addAttribute("balance_transaction", charge.getBalanceTransaction());
+			mav.addObject("error",0);
+			Evento e=eventoservice.getbyID(evento_id);
+			mav.addObject("evento",e);
+			
+			acqService.saveAcquisto(u.getId(),evento_id);
+			
+					
+		} catch(NullPointerException e) {
+		   mav.addObject("error",1);
+			
+			
+		}
+		
+		mav.setViewName("acquisto_response.html");
+		return mav;
+	}
+	
+	@ExceptionHandler(StripeException.class)
+	public String handleError(Model model, StripeException ex) {
+		model.addAttribute("error", ex.getMessage());
+		return "acquisto_response.html";
+	}
 	
 	
 	
+	@RequestMapping(value="/usershopping", method=RequestMethod.GET)
+	public ModelAndView usershopping(Principal principal) {
+		ModelAndView mav = new ModelAndView();	
+		mav.setViewName("usershopping.html");
+		
+		
+		try {
+			
+			User u=userService.findByUsername(principal.getName()); 
+			mav.addObject("user", u);	
+			List<Acquisto> Items=acqService.findbyUserId(u.getId()); //insieme oggetti di tipo "acquisto" che rappresentano gli item scelti dall'user
+			List<Evento> listEventi=eventoservice.getmultiEventsbyID(Items); //ad ogni oggetto di tipo "carrello" riesco ad individuare il corrispettivo evento scelto
+		//	List<AcquistoUser> acquisti_user=eventoservice.getAcquistiOfUser(u.getId());
+		//	System.out.println(acquisti_user.toString());
+			
+			
+			mav.addObject("eventi",listEventi);
+		}
+		catch (NullPointerException e) {
+			
+			e.printStackTrace();
+		}	
+		
+		
+		
+		return mav;
+	}
+	
+
+/*	@RequestMapping(value="/QRcode/{evento_id}", method=RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
+	public ResponseEntity<byte[]> qrcode(@PathVariable Integer id, Principal principal) {
+		try {
+			
+			User u=userService.findByUsername(principal.getName());
+			
+
+			return ResponseEntity.ok().cacheControl(CacheControl.maxAge(30, TimeUnit.MINUTES))
+					.body(imageService.generateQRCodeAsync(acquisto_code, 256, 256).get());
+		}
+		catch(Exception e ) {
+			e.printStackTrace();
+			
+			
+		}
+		return null;
+	}*/
 	
 	
 }

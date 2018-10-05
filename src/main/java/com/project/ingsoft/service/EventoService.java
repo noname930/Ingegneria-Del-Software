@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 
+import com.project.ingsoft.model.Acquisto;
+import com.project.ingsoft.model.AcquistoUser;
 import com.project.ingsoft.model.Carrello;
 import com.project.ingsoft.model.Evento;
 
@@ -34,5 +36,10 @@ public interface EventoService {
 	public Evento getbyID(Integer id);
 	
 	public List<Evento> getmultiEventsbyIDs(List<Carrello> items);
+	
+	public List<Evento> getmultiEventsbyID(List<Acquisto> items);
+	
+//	public List<AcquistoUser> getAcquistiOfUser(Integer user_id);
+
 
 }
