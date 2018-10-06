@@ -35,7 +35,7 @@ public interface EventoRepository extends JpaRepository<Evento,Integer> {
 	@Query("SELECT t FROM Evento t WHERE t.costo = ?1")
 	public List<Evento> getbyCosto(float costo);
 	
-	@Query("SELECT NEW com.project.ingsoft.model.AcquistoUser(E.id,E.nome,E.data,E.costo,E.localita,E.tipologia,E.sotto_tipologia,E.indirizzo,E.img,A.user_id,A.code) FROM Acquisto A INNER JOIN Evento E ON (A.evento_id=E.id)  WHERE A.user_id=?1")
+	@Query("SELECT NEW com.project.ingsoft.model.AcquistoUser(E.id,E.nome,E.data,E.costo,E.localita,E.tipologia,E.sotto_tipologia,E.indirizzo,E.img,A.user_id,E.descrizione,A.code) FROM Acquisto A INNER JOIN Evento E ON (A.evento_id=E.id)  WHERE A.user_id=?1")
 	public List<AcquistoUser> getAcquistiOfUser(Integer user_id);
 	
 	@Query("SELECT e FROM Carrello c INNER JOIN Evento e ON (c.evento_id=e.id) WHERE c.user_id=?1")

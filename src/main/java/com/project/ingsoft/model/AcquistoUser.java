@@ -15,6 +15,7 @@ public class AcquistoUser {
 	private String img;
 	private Integer user_id;
 	private String acquisto_code;
+	private String descrizione;
 	
 /*	public AcquistoUser(Evento e, Acquisto a, Integer user_id) {
 		this.evento_id=e.getId();
@@ -31,8 +32,18 @@ public class AcquistoUser {
 		
 	}*/
 	
+	public String getDescrizione() {
+		return descrizione;
+	}
+
+
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
+
+
 	public AcquistoUser(Integer evento_id, String nome_evento, Date data, float costo, String localita, String tipologia, 
-						String sotto_tipologia, String indirizzo, String img, Integer user_id, String acquisto_code) {
+						String sotto_tipologia, String indirizzo, String img, Integer user_id, String descrizione, String acquisto_code) {
 		
 		this.evento_id=evento_id;
 		this.nome_evento=nome_evento;
@@ -44,7 +55,8 @@ public class AcquistoUser {
 		this.indirizzo=indirizzo;
 		this.img=img;
 		this.user_id=user_id;
-		this.acquisto_code=acquisto_code;		
+		this.acquisto_code=acquisto_code;	
+		this.descrizione=descrizione;
 	}
 
 

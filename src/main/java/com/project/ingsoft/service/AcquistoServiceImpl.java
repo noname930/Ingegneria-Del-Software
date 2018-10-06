@@ -59,4 +59,14 @@ public class AcquistoServiceImpl implements AcquistoService{
 		return acquisti_eventi;
 	}
 
+
+	@Override
+	public boolean validate_qrcode(String codice) {
+			
+		if(ar.validate_qrcode(codice)==null)	
+			return false;
+		else 
+			return true;
+	}
+
 }

@@ -16,6 +16,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.ingsoft.model.Acquisto;
@@ -266,22 +268,6 @@ public class desktopController {
 	
 	
 	
-	@RequestMapping(value="/acquisto/item/{id}", method=RequestMethod.GET)
-	public ModelAndView acquistoItem(@PathVariable Integer id, Principal principal)
-	{
-		ModelAndView mav = new ModelAndView();
-		
-	    mav.addObject("amount", 50 * 100); // in cents
-	    mav.addObject("stripePublicKey", stripePublicKey);
-	    mav.addObject("currency", ChargeRequest.Currency.EUR);
-	    
-	    
-		mav.setViewName("acquisto.html");
-			
-		return mav;
-	}
-	
-	
 	@RequestMapping(value="/acquisto/response/{evento_id}", method=RequestMethod.POST)
 	public ModelAndView charge(@PathVariable Integer evento_id,ChargeRequest chargeRequest, Model model, Principal principal) throws StripeException {
 		ModelAndView mav = new ModelAndView();
@@ -367,6 +353,26 @@ public class desktopController {
 		}
 		return null;
 	}
+	
+	
+
+	@RequestMapping(value="/validate/qrcode/{codice}", method=RequestMethod.GET)
+	public ResponseEntity<String> validate_qrcode(@PathVariable String codice, Principal principal) {
+		try {
+			User u=userService.findByUsername(principal.getName());
+			if(acqService.validate_qrcode(codice))
+				return new ResponseEntity<String>("FOUND", HttpStatus.FOUND);
+			else
+				return new ResponseEntity<String>("NOT FOUND",HttpStatus.NOT_FOUND);		
+		}
+		catch(NullPointerException e ) {
+			e.printStackTrace();
+			
+			
+		}
+		return null;
+	}
+	
 	
 	
 }
