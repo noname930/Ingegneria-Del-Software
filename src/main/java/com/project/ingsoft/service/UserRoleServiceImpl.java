@@ -21,4 +21,18 @@ public class UserRoleServiceImpl implements UserRoleService{
 		ur.setRole_id(r.getId());
 		urRepository.save(ur);
 	}
+	
+	@Override
+	public boolean itsOperator(Integer user_id) {
+		
+		Role r=urRepository.findRoleByUserID(user_id);
+		
+		if(r.getRole().equals("op"))
+		 return true;
+	   
+	    else
+	    	return false;
+			
+	}
+
 }

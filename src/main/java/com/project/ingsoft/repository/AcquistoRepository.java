@@ -14,7 +14,6 @@ public interface AcquistoRepository extends JpaRepository<Acquisto,Integer>{
 	@Query("SELECT c FROM Acquisto c WHERE c.user_id=?1")
 	public List<Acquisto> findbyUserId(Integer user_id);
 	
-	
 	@Query("Select c FROM Acquisto c WHERE c.code=?1")
 	public Acquisto validate_qrcode(String codice);
 

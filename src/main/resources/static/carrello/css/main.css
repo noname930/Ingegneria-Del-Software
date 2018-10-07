@@ -1,6 +1,11 @@
 @charset "UTF-8";
 
 
+body {
+	height: 100vh;
+}
+
+
 p {
 	margin: auto;
 }
@@ -78,6 +83,7 @@ img{
     padding: 15px;
     bottom: 0;
     width: 100%;
+    position: relative;
 }
 
 .footer > p {

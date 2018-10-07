@@ -29,7 +29,6 @@ public class CarrelloServiceImpl implements CarrelloService{
 		
 		CarrelloRep.delete(lista_eventi.get(0));
 		
-		
 	}
 
 
@@ -48,7 +47,12 @@ public class CarrelloServiceImpl implements CarrelloService{
 	public void deleteItemByEventoANDUserID(Integer user_id, Integer evento_id) {
 		// TODO Auto-generated method stub
 		List<Carrello> lista_eventi= CarrelloRep.findbyEventoAndUserID(user_id, evento_id);
-		CarrelloRep.delete(lista_eventi.get(0));
+		
+	   try {
+		   CarrelloRep.delete(lista_eventi.get(0));
+	   } catch(Exception e) {
+		   e.printStackTrace();
+	   }
 		
 	}
 	

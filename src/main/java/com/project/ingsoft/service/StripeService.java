@@ -26,14 +26,19 @@ public class StripeService {
 		Stripe.apiKey=secretkey;
 	}
 	
-	public Charge charge(ChargeRequest chargeRequest) 
+	public Charge charge(ChargeRequest chargeRequest, boolean desktop_or_mob,String token_card) 
 		      throws AuthenticationException, InvalidRequestException,
 		        APIConnectionException, CardException, APIException {
 		        Map<String, Object> chargeParams = new HashMap<>();
 		        chargeParams.put("amount", chargeRequest.getAmount());
 		        chargeParams.put("currency", chargeRequest.getCurrency());
 		        chargeParams.put("description", chargeRequest.getDescription());
-		        chargeParams.put("source", chargeRequest.getStripeToken());
+		        chargeParams.put("receipt_email", chargeRequest.getStripeEmail());
+		        if(desktop_or_mob) 
+		        	chargeParams.put("source", chargeRequest.getStripeToken());
+		        else 
+		        	chargeParams.put("card", token_card);
+		        
 		        return Charge.create(chargeParams);
 		    }
 }

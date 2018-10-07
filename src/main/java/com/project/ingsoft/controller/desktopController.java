@@ -276,7 +276,7 @@ public class desktopController {
 			User u=userService.findByUsername(principal.getName()); 
 			chargeRequest.setDescription("Example charge");
 			chargeRequest.setCurrency(Currency.EUR);
-			Charge charge = paymentsService.charge(chargeRequest);
+			Charge charge = paymentsService.charge(chargeRequest,true,null);
 			model.addAttribute("id", charge.getId());
 			model.addAttribute("status", charge.getStatus());
 			model.addAttribute("chargeId", charge.getId());
@@ -286,6 +286,8 @@ public class desktopController {
 			mav.addObject("evento",e);
 			
 			acqService.saveAcquisto(u.getId(),evento_id);
+			carrService.deleteItemByEventoANDUserID(u.getId(), evento_id);
+			
 			
 					
 		} catch(NullPointerException e) {
@@ -344,7 +346,7 @@ public class desktopController {
 			
 
 			return ResponseEntity.ok().cacheControl(CacheControl.maxAge(30, TimeUnit.MINUTES))
-					.body(imageService.generateQRCodeAsync(codice, 256, 256).get());
+					.body(imageService.generateQRCodeAsync(codice, 400, 400).get());
 		}
 		catch(Exception e ) {
 			e.printStackTrace();
@@ -359,15 +361,14 @@ public class desktopController {
 	@RequestMapping(value="/validate/qrcode/{codice}", method=RequestMethod.GET)
 	public ResponseEntity<String> validate_qrcode(@PathVariable String codice, Principal principal) {
 		try {
-			User u=userService.findByUsername(principal.getName());
+			//verificare se l'account loggato è un operatore
 			if(acqService.validate_qrcode(codice))
 				return new ResponseEntity<String>("FOUND", HttpStatus.FOUND);
 			else
 				return new ResponseEntity<String>("NOT FOUND",HttpStatus.NOT_FOUND);		
 		}
 		catch(NullPointerException e ) {
-			e.printStackTrace();
-			
+			e.printStackTrace();			
 			
 		}
 		return null;

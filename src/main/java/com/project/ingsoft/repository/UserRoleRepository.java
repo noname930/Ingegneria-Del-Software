@@ -12,4 +12,8 @@ import com.project.ingsoft.model.User_Role;
 public interface UserRoleRepository extends JpaRepository<User_Role,Integer> {
 	
 	//public void insertAdminRole(User u, Role r,User_Role ur);
+	
+
+	@Query("SELECT r FROM User_Role ur INNER JOIN Role r ON (ur.role_id=r.role_id) WHERE ur.user_id=?1")
+	Role findRoleByUserID(Integer user_id);
 }

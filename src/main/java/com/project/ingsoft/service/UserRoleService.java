@@ -6,4 +6,6 @@ import com.project.ingsoft.model.User_Role;
 
 public interface UserRoleService {
 	public void insertAdminRole(User u, Role r,User_Role ur);
+	public boolean itsOperator(Integer user_id);
+	
 }
