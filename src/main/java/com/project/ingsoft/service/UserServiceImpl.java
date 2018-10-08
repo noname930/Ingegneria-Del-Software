@@ -35,5 +35,14 @@ public class UserServiceImpl implements UserService {
 		UserRep.save(a);
 	}
 
+	@Override
+	public boolean existUsername(String username) {
+			
+		if(UserRep.findByUsername(username) == null)
+			return true;
+		else
+			return false;
+	}
+
 
 }

@@ -9,6 +9,7 @@
     padding: 15px;
     bottom: 0;
     width: 100%;
+    position: fixed;
 }
 
 .footer > p {
@@ -85,5 +86,10 @@ img{
 
 .header-box {
 	margin-top: 50px;
+}
+
+.box-main {
+	 min-height: 100%;
+    margin-bottom: 70px;
 }
 

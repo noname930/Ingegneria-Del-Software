@@ -34,9 +34,6 @@ import com.project.ingsoft.service.StripeService;
 import com.project.ingsoft.service.UserRoleService;
 import com.project.ingsoft.service.UserService;
 import com.stripe.model.Charge;
-;
-
-
 
 @Controller
 public class androidController {
@@ -75,8 +72,6 @@ public class androidController {
 	private ImageService imageService;
 	
 	private String stripePublicKey="pk_test_SnryBHIG3it0bwxVO9ilP3R4";
-	private String stripePrivateKey="sk_test_Qb2ogTiXuwyVagBoCCM5VOcE";
-
 	
 	@RequestMapping(value="/get/eventi")
 	public @ResponseBody List<Evento> getEventi() {

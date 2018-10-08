@@ -3,6 +3,8 @@
 
 body {
 	height: 100vh;
+	position: relative;
+	min-height: 100%;
 }
 
 
@@ -83,11 +85,16 @@ img{
     padding: 15px;
     bottom: 0;
     width: 100%;
-    position: relative;
+    position: fixed;
 }
 
 .footer > p {
 	color:white;
 	text-align:center;
 	
+}
+
+.box-main {
+	min-height: 100%;
+    margin-bottom: 70px;
 }

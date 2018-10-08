@@ -74,8 +74,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         	.antMatchers("/evento/**").permitAll()
         	.antMatchers("/registration").permitAll()
         	.antMatchers("/userpage", "/carrello/**","/api/get/userinfo").hasAuthority("ROLE_admin")
+        	.antMatchers("/acquisto/**", "/QRcode/**", "/usershopping").hasAuthority("ROLE_admin")
+        	.antMatchers("/api/get/carrello","/api/get/acquisti", "/api/get/acquisto/**").hasAuthority("ROLE_admin")
         	.antMatchers("/api/get/operatoreinfo").hasAuthority("ROLE_op")
         	.antMatchers("/validate/qrcode/**").hasAuthority("ROLE_op")
+        	.antMatchers("/api/check/operator").hasAuthority("ROLE_op")
         	.anyRequest().authenticated().and().httpBasic()// autentico la richiesta di login
             .and()
          .formLogin()

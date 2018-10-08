@@ -168,12 +168,20 @@ public class desktopController {
 	    mav.setViewName("registration.html");
 	    //System.out.println("pass:["+u.getPassword()+"]"+" => " + "["+bCryptPasswordEncoder.encode(u.getPassword())+"]");
 	    
+	    if(userService.existUsername(u.getUsername())) {
+	      u.setPassword(bCryptPasswordEncoder.encode(u.getPassword())); // encrypt della pass inserita dall'user
+	      u.setEnabled(1); // abilito l'account
+	      userService.saveUser(u); // salvo l'account	    
+	       //System.out.println(u.getId()+" "+ (roleRepository.findByRole("admin").getId()));
+	       urService.insertAdminRole(u,roleService.findbyRole("admin"), new User_Role()); //affido il ruolo admin al nuovo account
+	       mav.addObject("error",0);
+	    }
+	    else
+	    	mav.addObject("error",1);
 	    
-	    u.setPassword(bCryptPasswordEncoder.encode(u.getPassword())); // encrypt della pass inserita dall'user
-	    u.setEnabled(1); // abilito l'account
-	    userService.saveUser(u); // salvo l'account	    
-	    //System.out.println(u.getId()+" "+ (roleRepository.findByRole("admin").getId()));
-	    urService.insertAdminRole(u,roleService.findbyRole("admin"), new User_Role()); //affido il ruolo admin al nuovo account
+	    
+	    	mav.setViewName("registration.html");
+	     
 	    
 		return mav;
 	}

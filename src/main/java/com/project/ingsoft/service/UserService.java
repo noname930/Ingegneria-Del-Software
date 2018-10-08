@@ -21,5 +21,7 @@ public interface UserService {
 	public User findByUsername(String username);
 	
 	public void saveUser(User a);
+	
+	public boolean existUsername(String username);
 
 }
