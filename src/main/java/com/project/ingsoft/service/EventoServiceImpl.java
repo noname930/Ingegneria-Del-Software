@@ -102,6 +102,14 @@ public class EventoServiceImpl implements EventoService {
 		// TODO Auto-generated method stub
 		return EventoRep.getEventiofCarrelloUser(user_id);
 	}
+	
+	@Override 
+	public boolean checkExistsEventoID(Integer evento_id) {
+		if (EventoRep.existsById(evento_id))
+			return true;
+		else
+			return false;
+	}
 
 
 }

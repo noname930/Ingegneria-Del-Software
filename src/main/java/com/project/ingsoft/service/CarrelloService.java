@@ -12,7 +12,7 @@ public interface CarrelloService {
 	
 	public void deleteItemByEventoANDUserID(Integer user_id, Integer evento_id);
 	
-	public void addItemCarrello(Integer user_id, Integer evento_id);
+	public boolean addItemCarrello(Integer user_id, Integer evento_id);
 
 
 }

@@ -31,6 +31,9 @@ public interface EventoRepository extends JpaRepository<Evento,Integer> {
 	
 	@Query("SELECT t FROM Evento t WHERE t.tipologia = ?1")
 	public List<Evento> getbyTipologia(String Tipologia);
+	
+	@Query("SELECT t FROM Evento t WHERE t.nome = ?1")
+	public Evento getbyNome(String nome);
 		
 	@Query("SELECT t FROM Evento t WHERE t.costo = ?1")
 	public List<Evento> getbyCosto(float costo);

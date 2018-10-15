@@ -77,6 +77,26 @@
 	  </div>
 	</div>
 	
+	<div class="container container-reg" th:if="${error}==2">
+	 <div="box">
+	  <div class="row" style="justify-content: center">
+	  	<p>Registrazione non riuscita!</p>
+	  </div>
+	  <div class="row" style="justify-content: center">	  	
+	  	<p>Non dimenticare nessun campo vuoto</p>	  	
+	  </div>
+	   <div class="row" style="justify-content: center">	
+	  	<p>Accertati che la password abbia almeno 5 caratteri</p>
+	  </div>
+	  <div class="row" style="justify-content: center">
+	  	<p>Il numero di telefono deve contenere 10 cifre</p>
+	  </div>
+	  <div class="row" style="justify-content: center">
+	    <a class="btn btn-success" href="/login">Registrati!</a>
+	  </div>
+	  </div>
+	</div>
+	
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

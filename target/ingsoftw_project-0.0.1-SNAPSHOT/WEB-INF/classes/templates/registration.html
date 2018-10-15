@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
 <title>EasyTicket</title>
 
 
@@ -56,13 +55,24 @@
        </div>
 	</nav> <!-- END NAVBAR -->
 	
-	<div class="container container-reg">
+	<div class="container container-reg" th:if="${error}==0">
 	 <div="box">
 	  <div class="row" style="justify-content: center">
 	  	<p>La registrazione e' avvenuta con successo, adesso prova ad effettuare il tuo primo login:</p>
 	  </div>
 	  <div class="row" style="justify-content: center">
 	    <a class="btn btn-success" href="/login">Effettua il Login!</a>
+	  </div>
+	  </div>
+	</div>
+	
+	<div class="container container-reg" th:if="${error}==1">
+	 <div="box">
+	  <div class="row" style="justify-content: center">
+	  	<p>La registrazione fallita: username già esistente!</p>
+	  </div>
+	  <div class="row" style="justify-content: center">
+	    <a class="btn btn-success" href="/login">Registrati!</a>
 	  </div>
 	  </div>
 	</div>

@@ -31,6 +31,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.ingsoft.exceptions.CredentialsException;
+import com.project.ingsoft.exceptions.MailNotValid;
+import com.project.ingsoft.exceptions.dataException;
+import com.project.ingsoft.exceptions.passwordException;
+import com.project.ingsoft.exceptions.phonenumberException;
 import com.project.ingsoft.model.Acquisto;
 import com.project.ingsoft.model.AcquistoUser;
 import com.project.ingsoft.model.Carrello;
@@ -163,24 +168,37 @@ public class desktopController {
 	
 	
 	@RequestMapping(value="/registration", method=RequestMethod.GET)
-	public ModelAndView registration(User u,BindingResult bindingresult) {
+	public ModelAndView registration(User u,BindingResult bindingresult) throws passwordException, CredentialsException, dataException, phonenumberException, MailNotValid {
 		ModelAndView mav = new ModelAndView();	
 	    mav.setViewName("registration.html");
 	    //System.out.println("pass:["+u.getPassword()+"]"+" => " + "["+bCryptPasswordEncoder.encode(u.getPassword())+"]");
+	     try {
+	    	 if(userService.existUsername(u.getUsername())) {
+	   	      
+	          u.setPassword(bCryptPasswordEncoder.encode(u.getPassword())); // encrypt della pass inserita dall'user
+	   	      u.setEnabled(1); // abilito l'account
+	   	         	      
+	   	      userService.saveUser(u); // salvo l'account
+	   	      
+	   	       //System.out.println(u.getId()+" "+ (roleRepository.findByRole("admin").getId()));
+	   	       urService.insertAdminRole(u,roleService.findbyRole("admin"), new User_Role()); //affido il ruolo admin al nuovo account
+	   	       mav.addObject("error",0);
+	   	    }
+	   	    else
+	   	    	mav.addObject("error",1);
+
+	     } catch (NullPointerException e) {
+	    	 e.printStackTrace();
+	    	 mav.addObject("error",2);
+	    	 
+	     } catch (Exception e) {
+	    	 e.printStackTrace();
+	    	 mav.addObject("error",2);
+	     }
+	     
+	   	    
 	    
-	    if(userService.existUsername(u.getUsername())) {
-	      u.setPassword(bCryptPasswordEncoder.encode(u.getPassword())); // encrypt della pass inserita dall'user
-	      u.setEnabled(1); // abilito l'account
-	      userService.saveUser(u); // salvo l'account	    
-	       //System.out.println(u.getId()+" "+ (roleRepository.findByRole("admin").getId()));
-	       urService.insertAdminRole(u,roleService.findbyRole("admin"), new User_Role()); //affido il ruolo admin al nuovo account
-	       mav.addObject("error",0);
-	    }
-	    else
-	    	mav.addObject("error",1);
-	    
-	    
-	    	mav.setViewName("registration.html");
+	   mav.setViewName("registration.html");
 	     
 	    
 		return mav;
@@ -311,8 +329,17 @@ public class desktopController {
 	@ExceptionHandler(StripeException.class)
 	public String handleError(Model model, StripeException ex) {
 		model.addAttribute("error", ex.getMessage());
+		model.addAttribute("error",3);
 		return "acquisto_response.html";
 	}
+	
+	@ExceptionHandler(passwordException.class)
+	public String handleError(Model model,passwordException ex) {
+		model.addAttribute("error_msg", ex.getMessage());
+		model.addAttribute("error",3);
+		return "error_page.html";
+	}
+	
 	
 	
 	

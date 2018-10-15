@@ -23,5 +23,8 @@ public interface UserService {
 	public void saveUser(User a);
 	
 	public boolean existUsername(String username);
+	
+	public boolean existUserID(Integer user_id);
+
 
 }

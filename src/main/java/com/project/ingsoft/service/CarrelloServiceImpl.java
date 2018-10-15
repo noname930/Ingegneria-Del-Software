@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.ingsoft.exceptions.carrelloException;
 import com.project.ingsoft.model.Carrello;
 import com.project.ingsoft.repository.CarrelloRepository;
 
@@ -13,6 +14,12 @@ public class CarrelloServiceImpl implements CarrelloService{
 
 	@Autowired
 	private CarrelloRepository CarrelloRep;
+	
+	@Autowired
+	private EventoService eventoservice;
+	
+	@Autowired
+	private UserService userService;
 	
 	
 	@Override
@@ -33,12 +40,22 @@ public class CarrelloServiceImpl implements CarrelloService{
 
 
 	@Override
-	public void addItemCarrello(Integer user_id, Integer evento_id) {
+	public boolean addItemCarrello(Integer user_id, Integer evento_id) {
 		
+		if(user_id < 0 || evento_id < 0 || !userService.existUserID(user_id) || !eventoservice.checkExistsEventoID(evento_id)) {
+			System.out.println("ADDITEMCARRELLO: "+ userService.existUserID(user_id) + " " + eventoservice.checkExistsEventoID(evento_id));
+			return false;
+		}
+			
 		Carrello c= new Carrello();
-		c.setUser_id(user_id);
-		c.setEvento_id(evento_id);
-		CarrelloRep.save(c);
+		try {
+			c.setUser_id(user_id);
+			c.setEvento_id(evento_id);
+		} catch (carrelloException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		CarrelloRep.save(c);
+		return true;
 		
 	}
 

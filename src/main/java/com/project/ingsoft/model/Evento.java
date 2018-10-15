@@ -2,6 +2,7 @@ package com.project.ingsoft.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -61,6 +62,20 @@ public class Evento implements Serializable{
 	@Column(name="sotto_tipologia")
 	private String sotto_tipologia;
 	
+	
+	public Evento () {}
+	
+	public Evento (String nome,String localita,Date data,float costo, String tipologia, String img, String indirizzo, String descrizione, String sottotipologia) {		
+		this.setNome(nome);
+		this.setLocalita(localita);
+		this.setData(data);
+		this.setCosto(costo);
+		this.setTipologia(tipologia);
+		this.setIndirizzo(indirizzo);
+		this.setDescrizione(descrizione);
+		this.setSotto_tipologia(sottotipologia);
+		this.setImg(img);		
+	}
 	
 
 	public String getSotto_tipologia() {
@@ -123,7 +138,7 @@ public class Evento implements Serializable{
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(Date data) {	
 		this.data = data;
 	}
 

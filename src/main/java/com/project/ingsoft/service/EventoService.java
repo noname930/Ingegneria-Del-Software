@@ -42,6 +42,8 @@ public interface EventoService {
 	public List<AcquistoUser> getAcquistiOfUser(Integer user_id);
 	
 	public List<Evento> getEventiofCarrelloUser(Integer user_id);
+	
+	public boolean checkExistsEventoID(Integer evento_id);
 
 
 }

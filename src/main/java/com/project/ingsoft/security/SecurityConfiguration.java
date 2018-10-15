@@ -70,7 +70,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	http.csrf().disable()
         .authorizeRequests()
-        	.antMatchers("/").permitAll() //accesso alla permesso a tutti
+        	.antMatchers("/","/home").permitAll() //accesso alla permesso a tutti
         	.antMatchers("/evento/**").permitAll()
         	.antMatchers("/registration").permitAll()
         	.antMatchers("/userpage", "/carrello/**","/api/get/userinfo").hasAuthority("ROLE_admin")

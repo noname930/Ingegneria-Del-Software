@@ -2,6 +2,13 @@ package com.project.ingsoft.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +16,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.project.ingsoft.exceptions.CredentialsException;
+import com.project.ingsoft.exceptions.MailNotValid;
+import com.project.ingsoft.exceptions.dataException;
+import com.project.ingsoft.exceptions.passwordException;
+import com.project.ingsoft.exceptions.phonenumberException;
 
 
 
@@ -55,7 +68,7 @@ public class User implements Serializable {
 	
 
 	@Column(name="data_di_nascita")
-	private String data;
+	private Date data;
 
 	@Column(name="paese")
 	private String paese;
@@ -64,14 +77,31 @@ public class User implements Serializable {
 	@Column(name="telefono")
 	private String telefono;
 	
+	public User () {}
 	
+	public User(String nome, String cognome, String username, String password, Date data, String paese, String telefono, Integer enable) throws MailNotValid, 
+																																				dataException, 
+																																				passwordException, 
+																																				phonenumberException, 
+																																				CredentialsException {
+		this.setNome(nome);
+		this.setCognome(cognome);
+		this.setUsername(username);
+		this.setPassword(password);
+		this.setData(data);
+		this.setPaese(paese);
+		this.setTelefono(telefono);
+		this.setEnabled(enable);
+	}
 	
 	
 	public String getNome() {
 		return nome;
 	}
 
-	public void setNome(String nome) {
+	public void setNome(String nome) throws CredentialsException {
+		if(nome.length()==0 || !checkCredentials(nome))
+			throw new CredentialsException("Nome inserito non valido. \nN.B. Spazi e Numeri non sono accettati");
 		this.nome = nome;
 	}
 
@@ -79,15 +109,26 @@ public class User implements Serializable {
 		return cognome;
 	}
 
-	public void setCognome(String cognome) {
+	public void setCognome(String cognome) throws CredentialsException {
+		if(cognome.length()==0 || !checkCredentials(cognome))
+			throw new CredentialsException("Cognome inserito non valido. \nN.B. Spazi e Numeri non sono accettati");
 		this.cognome = cognome;
 	}
 
-	public String getData() {
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(Date data) throws dataException {
+		java.util.Date currentData = new java.util.Date();
+		
+		System.out.println(data.toString());
+		System.out.println(currentData.toString());
+		
+		if(data.compareTo(currentData) >= 0) {
+			throw new dataException("Data (" + data.toString()+")"+ " non  valida");
+		}
+		
 		this.data = data;
 	}
 
@@ -103,7 +144,11 @@ public class User implements Serializable {
 		return telefono;
 	}
 
-	public void setTelefono(String telefono) {
+	public void setTelefono(String telefono) throws phonenumberException {
+		if(telefono.length()!=10 || !checkPhoneNumber(telefono))
+			throw new phonenumberException("Numero di telefono inserita non valido");
+
+			
 		this.telefono = telefono;
 	}
 
@@ -119,7 +164,15 @@ public class User implements Serializable {
 		return username;
 	}
 
-	public void setUsername(String username) {
+	public void setUsername(String username) throws MailNotValid {
+		
+		if(username != null) {
+		 Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
+         Matcher mat = pattern.matcher(username);		
+         if(!mat.matches())
+        	throw new MailNotValid("eMail non valida!");
+		}
+		
 		this.username = username;
 	}
 
@@ -127,8 +180,11 @@ public class User implements Serializable {
 		return password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword(String password) throws passwordException {
+		if(password.length()<=5 || !checkPassword(password))
+			throw new passwordException("Password inserita non valida");
+		else
+			this.password = password;
 	}
 
 
@@ -139,6 +195,63 @@ public class User implements Serializable {
 	public void setEnabled(Integer enabled) {
 		this.enabled = enabled;
 	}
+	
+	
+	public boolean checkPassword(String password) {
+		int count = 0;
+		for(int i=0; i<password.length(); i++) {
+			char x = password.charAt(i);
+			
+			if(Character.isWhitespace(x))
+				break;
+			else
+				count++;
+		}
+		
+		if(count == password.length())
+			return true;
+		else
+			return false;
+		
+	}
+	
+	public boolean checkPhoneNumber(String telefono){
+		
+		int count = 0;
+		for(int i=0; i<telefono.length(); i++) {
+			char x = telefono.charAt(i);
+			
+			if(Character.isDigit(x))
+				count++;
+			else
+				break;
+		}
+		
+		if(count == telefono.length())
+			return true;
+		else
+			return false;
+		
+	}
+	
+	public boolean checkCredentials(String name) {
+		int count = 0;
+		for(int i=0; i<name.length(); i++) {
+			char x = name.charAt(i);
+			
+			if(Character.isJavaLetter(x))
+				count++;
+			else
+				break;
+		}
+		
+		if(count == name.length())
+			return true;
+		else
+			return false;
+	}
+
+		
 	
 	
 

@@ -43,6 +43,15 @@ public class UserServiceImpl implements UserService {
 		else
 			return false;
 	}
+	
+	
+	@Override
+	public boolean existUserID(Integer user_id) {
+		if(UserRep.existsById(user_id))
+			return true;
+		else
+			return false;
+	}
 
 
 }
