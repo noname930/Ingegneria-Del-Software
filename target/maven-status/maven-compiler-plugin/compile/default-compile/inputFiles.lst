@@ -6,11 +6,14 @@
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/model/AcquistoUser.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/repository/AcquistoRepository.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/service/EventoService.java
+/Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/exceptions/MailNotValid.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/service/UserRoleService.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/repository/UserRepository.java
+/Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/exceptions/passwordException.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/repository/UserRoleRepository.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/service/AcquistoService.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/IngsoftwProjectApplication.java
+/Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/exceptions/carrelloException.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/security/SecurityConfiguration.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/service/RoleServiceImpl.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/service/RoleService.java
@@ -22,6 +25,7 @@
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/ServletInitializer.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/model/Evento.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/service/UserService.java
+/Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/exceptions/dataException.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/service/EventoServiceImpl.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/repository/CarrelloRepository.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/security/WebMvcConfig.java
@@ -30,5 +34,7 @@
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/controller/androidController.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/service/UserRoleServiceImpl.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/model/Role.java
+/Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/exceptions/phonenumberException.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/model/ChargeRequest.java
 /Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/service/StripeService.java
+/Users/alessiospina/Documents/OneDrive/Development/ingsoftw_project/src/main/java/com/project/ingsoft/exceptions/CredentialsException.java
